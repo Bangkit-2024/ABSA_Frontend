@@ -31,6 +31,7 @@ import ComingSoon from "pages/AuthenticationInner/ComingSoon";
 import Maintenance from "pages/AuthenticationInner/Maintenance";
 import Offline from "pages/AuthenticationInner/Offline";
 import Pages404 from "pages/AuthenticationInner/Pages404";
+import Login from "pages/Authentication/Login";
 
 interface RouteObject {
   path: string;
@@ -73,7 +74,7 @@ const publicRoutes = [
 
 
   // authentication
-  { path: "/login", component: LoginModern },
+  { path: "/login", component: Login },
   { path: "/logout", component: Logout },
   { path: "/register", component: Register },
 
