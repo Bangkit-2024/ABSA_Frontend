@@ -22,13 +22,6 @@ const menuData: any = [
         link: '/apps-chat',
         parentId: 2
     },
-
-
-
-
-
-
-
     {
         id: 'users',
         label: 'Users',
@@ -342,7 +335,7 @@ const menuData: any = [
         ]
     },
     {
-        label: 'Components',
+        label: 'Upload File',
         isTitle: true,
     },
 
@@ -531,49 +524,6 @@ const menuData: any = [
             }
         ]
     },
-
-    {
-        id: "icons",
-        label: 'Icons',
-        link: "/#",
-        icon: <Trophy />,
-        subItems: [
-            {
-                id: 'remix',
-                label: 'Remix',
-                link: '/icons-remix',
-                parentId: "icons"
-            },
-            {
-                id: 'lucide',
-                label: 'Lucide',
-                link: '/icons-lucide',
-                parentId: "icons"
-            }
-        ]
-    },
-    {
-        id: "maps",
-        label: 'Maps',
-        link: "/#",
-        icon: <Map />,
-        subItems: [
-            {
-                id: 'google',
-                label: 'Google Maps',
-                link: '/maps-google',
-                parentId: "maps"
-            },
-            {
-                id: 'leaflet',
-                label: 'Leaflet Map',
-                link: '/maps-leaflet',
-                parentId: "maps"
-            }
-        ]
-    },
-
-
 ];
 
 export { menuData };
