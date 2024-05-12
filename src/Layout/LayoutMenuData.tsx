@@ -10,66 +10,14 @@ const menuData: any = [
         label: 'Dashboards',
         link: "/#",
         icon: <MonitorDot />,
-        subItems: [
-            {
-                id: 'analyticsdashboard',
-                label: 'Analytics',
-                link: '/dashboards-analytics',
-                parentId: "dashboard"
-            },
-            {
-                id: 'ecommercedashboard',
-                label: 'Ecommerce',
-                link: '/dashboard',
-                parentId: "dashboard"
-            },
-            {
-                id: 'emaildashboard',
-                label: 'Email',
-                link: '/dashboards-email',
-                parentId: "dashboard"
-            },
-            {
-                id: 'hrdashboard',
-                label: 'HR',
-                link: '/dashboards-hr',
-                parentId: "dashboard"
-            },
-            {
-                id: 'socialdashboard',
-                label: 'Social',
-                link: '/dashboards-social',
-                parentId: "dashboard"
-            },
-        ]
     },
     {
-        id: "landing",
-        label: 'Landing Page',
-        link: "/#",
-        icon: <PictureInPicture2 />,
-        subItems: [
-            {
-                id: 'onepage',
-                label: 'One Page',
-                link: '/onepage-landing',
-                parentId: "landing"
-            },
-            {
-                id: 'productlanding',
-                label: 'Product',
-                link: '/product-landing',
-                parentId: "landing"
-            }
-        ]
-    },
-    {
-        label: 'Apps',
+        label: 'Data',
         isTitle: true,
     },
     {
         id: 'chat',
-        label: 'Chat',
+        label: 'Upload Data',
         icon: <MessageSquare />,
         link: '/apps-chat',
         parentId: 2
