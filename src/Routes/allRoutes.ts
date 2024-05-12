@@ -33,6 +33,9 @@ import Offline from "pages/AuthenticationInner/Offline";
 import Pages404 from "pages/AuthenticationInner/Pages404";
 import Login from "pages/Authentication/Login";
 
+// File Upload
+import FileUpload from "pages/Components/FileUpload";
+
 interface RouteObject {
   path: string;
   component: React.ComponentType<any>; // Use React.ComponentType to specify the type of the component
@@ -78,6 +81,8 @@ const publicRoutes = [
   { path: "/logout", component: Logout },
   { path: "/register", component: Register },
 
+  // File Upload
+  { path: "/file-upload", component: FileUpload },
 ]
 
 export { authProtectedRoutes, publicRoutes };
