@@ -1,0 +1,20 @@
+{
+  "ignore": {
+    "files": [
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Alert/AlertContext.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Alert/index.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Collapse/CollapseContext.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Drawer/DrawerContext.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Dropdown.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Modal/ModalContext.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Popper.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/SideBarDropdown.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/Components/Tab/TabContext.tsx",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/Common/data/index.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/api_helper.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/fakebackend_helper.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/firebase_helper.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/jwt-token-access/auth-token-header.ts"
+    ]
+  }
+}
