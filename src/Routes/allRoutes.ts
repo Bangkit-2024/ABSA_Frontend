@@ -38,24 +38,6 @@ import UserListView from "pages/Users/ListView";
 import UserGridView from "pages/Users/GridView";
 
 // Ui element
-import UiAlert from "pages/Components/UIElement/UiAlert";
-import UiAvatar from "pages/Components/UIElement/UIAvatar";
-import UiButtons from "pages/Components/UIElement/UiButtons";
-import UIDrawer from "pages/Components/UIElement/Drawer";
-import UiModal from "pages/Components/UIElement/Modal";
-import UiLabel from "pages/Components/UIElement/UILabel";
-import UiCards from "pages/Components/UIElement/UiCards";
-import UiCollapse from "pages/Components/UIElement/UiCollapse";
-import UiCountdown from "pages/Components/UIElement/UiCountdown";
-import UiDropdown from "pages/Components/UIElement/UiDropdown";
-import UiGallery from "pages/Components/UIElement/UiGallery";
-import UiLists from "pages/Components/UIElement/UiLists";
-import UiNotification from "pages/Components/UIElement/UiNotification";
-import UiSpinners from "pages/Components/UIElement/UiSpinners";
-import UITimeline from "pages/Components/UIElement/UiTimeline";
-import UiProgressBar from "pages/Components/UIElement/UiProgressBar";
-import UITooltip from "pages/Components/UIElement/UiTooltip";
-import UiVideo from "pages/Components/UIElement/UiVideo";
 
 // plugins
 import PSimpleBar from "pages/Components/Plugins/Simplebar";
@@ -94,24 +76,6 @@ import MapsGoogle from "pages/Components/MapsGoogle";
 import MapsLeaflet from "pages/Components/MapsLeaflet";
 
 //Charts
-import AreaCharts from "pages/ApexCharts/AreaCharts/index";
-import BarCharts from "pages/ApexCharts/BarCharts";
-import BoxplotCharts from "pages/ApexCharts/BoxplotCharts";
-import BubbleCharts from "pages/ApexCharts/BubbleCharts";
-import CandlstickCharts from "pages/ApexCharts/CandlstickCharts";
-import ColumnCharts from "pages/ApexCharts/ColumnCharts";
-import FunnelCharts from "pages/ApexCharts/FunnelCharts";
-import HeatmapChart from "pages/ApexCharts/HeatmapChart";
-import LineChart from "pages/ApexCharts/LineCharts";
-import MixedChart from "pages/ApexCharts/MixedCharts/Index";
-import PieChart from "pages/ApexCharts/PieCharts/Index";
-import PolarAreaChart from "pages/ApexCharts/PolarAreaCharts/Index";
-import RadarChart from "pages/ApexCharts/RadarCharts/Index";
-import RadialbarChart from "pages/ApexCharts/RadialBarCharts/Index";
-import RangeAreaChart from "pages/ApexCharts/RangeAreaCharts";
-import Scatterchart from "pages/ApexCharts/ScatterCharts/Index";
-import TimeLinechart from "pages/ApexCharts/TimeLineCharts/Index";
-import Treemapchart from "pages/ApexCharts/TreemapCharts/Index";
 
 // Landing
 import OnePage from "pages/Components/Landing/Onepage";
