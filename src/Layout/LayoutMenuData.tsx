@@ -858,40 +858,6 @@ const menuData: any = [
             }
         ]
     },
-    {
-        id: "multilevel",
-        label: 'Multi Level',
-        link: "/#",
-        icon: <Share2 />,
-        subItems: [
-            {
-                id: 'level1',
-                label: 'Level 1.1',
-                link: '/#',
-                parentId: "multilevel"
-            },
-            {
-                id: 'level2',
-                label: 'Level 1.2',
-                link: '/#',
-                parentId: "multilevel",
-                subItems: [
-                    {
-                        id: 'level21',
-                        label: 'Level 2.1',
-                        link: '/#',
-                        parentId: 'level2'
-                    },
-                    {
-                        id: 'level22',
-                        label: 'Level 2.2',
-                        link: '/#',
-                        parentId: 'level2'
-                    },
-                ]
-            }
-        ]
-    },
 
 ];
 
