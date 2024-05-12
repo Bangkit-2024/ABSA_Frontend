@@ -14,7 +14,17 @@
       "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/api_helper.ts",
       "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/fakebackend_helper.ts",
       "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/firebase_helper.ts",
-      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/jwt-token-access/auth-token-header.ts"
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/helpers/jwt-token-access/auth-token-header.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/calendar/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/chat/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/ecommerce/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/hrManagement/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/invoice/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/layouts/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/mailbox/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/notes/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/social/reducer.ts",
+      "d:/Projects/Fnikolas221Project/2024/bangkit2024_project/absa_frontend/src/slices/users/reducer.ts"
     ]
   }
 }
