@@ -20,19 +20,6 @@ const menuData: any = [
         label: 'File Upload',
         icon: <FileUp />,
         link: "/file-upload",
-        // subItems: [
-        //     {
-        //         id: 'upload-data',
-        //         label: 'Upload CSV',
-        //         parentId: 'uploads',
-        //     },
-        //     {
-        //         id: 'upload-data',
-        //         label: 'Upload Excel',
-        //         link: '/#',
-        //         parentId: 'uploads'
-        //     },
-        // ]
     },
     {
         label: 'Users',
