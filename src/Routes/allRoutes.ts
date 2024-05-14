@@ -37,6 +37,12 @@ import Login from "pages/Authentication/Login";
 import FileUpload from "pages/Components/FileUpload";
 
 
+// Profile Information
+import userInfo from "pages/User/UserInfo/index";
+
+// User Profile Settings
+import userSetting from "pages/User/UserSettings/index";
+
 interface RouteObject {
   path: string;
   component: React.ComponentType<any>; // Use React.ComponentType to specify the type of the component
@@ -47,8 +53,19 @@ const authProtectedRoutes: Array<RouteObject> = [
   // Dashboard
   { path: "/", component: Ecommerce },
   { path: "/dashboard", component: Ecommerce },
+
+  // File Upload
+  { path: "/file-upload", component: FileUpload },
+
+  // User Profile Information
+  { path: "/user-information", component: userInfo},
+
+  // User Profile settings
+  { path: "/setting-user-profile", component: userSetting },
+
   // File uploads
   { path: "/file-upload", component: FileUpload },
+
 ];
 
 const publicRoutes = [
@@ -82,7 +99,6 @@ const publicRoutes = [
   { path: "/login", component: Login },
   { path: "/logout", component: Logout },
   { path: "/register", component: Register },
-
 ]
 
 export { authProtectedRoutes, publicRoutes };
