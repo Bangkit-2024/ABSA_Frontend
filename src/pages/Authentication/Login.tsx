@@ -17,7 +17,7 @@ import withRouter from "Common/withRouter";
 
 const Login = (props: any) => {
 
-    document.title = "Login | Tailwick - React Admin & Dashboard Template";
+    document.title = "Login | Bizzagi - Aspect Based Sentiment Analysis";
 
     const dispatch = useDispatch<any>();
 

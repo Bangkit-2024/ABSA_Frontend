@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const BasicLogout = () => {
 
-    document.title = "LogOut | Tailwick - React Admin & Dashboard Template";
+    document.title = "LogOut | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;
