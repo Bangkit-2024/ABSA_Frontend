@@ -3,13 +3,7 @@ import { Dropdown } from "Common/Components/Dropdown";
 
 // Image
 import us from "assets/images/flags/us.svg";
-import es from "assets/images/flags/es.svg";
-import de from "assets/images/flags/de.svg";
-import fr from "assets/images/flags/fr.svg";
-import jp from "assets/images/flags/jp.svg";
-import it from "assets/images/flags/it.svg";
-import ru from "assets/images/flags/ru.svg";
-import ae from "assets/images/flags/ae.svg";
+import id from "assets/images/flags/20/id.svg";
 
 const AuthDropdown = () => {
 
@@ -30,33 +24,9 @@ const AuthDropdown = () => {
                             <img src={us} alt="" className="object-cover h-4 rounded-full" />
                             <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">English</h6>
                         </a>
-                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(es); setDropText("Spanish") }}>
-                            <img src={es} alt="" className="object-cover h-4 rounded-full" />
-                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">Spanish</h6>
-                        </a>
-                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(de); setDropText("German") }}>
-                            <img src={de} alt="" className="object-cover h-4 rounded-full" />
-                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">German</h6>
-                        </a>
-                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(fr); setDropText("French") }}>
-                            <img src={fr} alt="" className="object-cover h-4 rounded-full" />
-                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">French</h6>
-                        </a>
-                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(jp); setDropText("Japanese") }}>
-                            <img src={jp} alt="" className="object-cover h-4 rounded-full" />
-                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">Japanese</h6>
-                        </a>
-                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(it); setDropText("Italian") }}>
-                            <img src={it} alt="" className="object-cover h-4 rounded-full" />
-                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">Italian</h6>
-                        </a>
-                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(ru); setDropText("Russian") }}>
-                            <img src={ru} alt="" className="object-cover h-4 rounded-full" />
-                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">Russian</h6>
-                        </a>
-                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(ae); setDropText("Arabic") }}>
-                            <img src={ae} alt="" className="object-cover h-4 rounded-full" />
-                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">Arabic</h6>
+                        <a href="#!" className="flex items-center gap-3 group/items" onClick={() => { setDropImage(us); setDropText("English") }}>
+                            <img src={id} alt="" className="object-cover h-4 rounded-full" />
+                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">English</h6>
                         </a>
                     </Dropdown.Content>
                 </Dropdown>
