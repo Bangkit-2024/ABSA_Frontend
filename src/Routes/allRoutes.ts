@@ -36,6 +36,7 @@ import Login from "pages/Authentication/Login";
 // File Upload
 import FileUpload from "pages/Components/FileUpload";
 
+
 // Profile Information
 import userInfo from "pages/User/UserInfo/index";
 
@@ -61,6 +62,9 @@ const authProtectedRoutes: Array<RouteObject> = [
 
   // User Profile settings
   { path: "/setting-user-profile", component: userSetting },
+
+  // File uploads
+  { path: "/file-upload", component: FileUpload },
 
 ];
 
