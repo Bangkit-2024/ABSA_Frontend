@@ -36,6 +36,7 @@ import Login from "pages/Authentication/Login";
 // File Upload
 import FileUpload from "pages/Components/FileUpload";
 
+
 interface RouteObject {
   path: string;
   component: React.ComponentType<any>; // Use React.ComponentType to specify the type of the component
@@ -46,7 +47,8 @@ const authProtectedRoutes: Array<RouteObject> = [
   // Dashboard
   { path: "/", component: Ecommerce },
   { path: "/dashboard", component: Ecommerce },
-
+  // File uploads
+  { path: "/file-upload", component: FileUpload },
 ];
 
 const publicRoutes = [
@@ -81,8 +83,6 @@ const publicRoutes = [
   { path: "/logout", component: Logout },
   { path: "/register", component: Register },
 
-  // File Upload
-  { path: "/file-upload", component: FileUpload },
 ]
 
 export { authProtectedRoutes, publicRoutes };
