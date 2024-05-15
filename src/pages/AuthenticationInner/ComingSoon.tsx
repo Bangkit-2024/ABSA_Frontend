@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const ComingSoon = () => {
 
-    document.title = "Coming Soon | Tailwick - React Admin & Dashboard Template";
+    document.title = "Coming Soon | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;

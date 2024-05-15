@@ -48,7 +48,7 @@ const menuData: any = [
     {
         id: "logout",
         label: 'Logout',
-        link: "/#",
+        link: "/logout",
         icon: <PowerOff />
     },
 

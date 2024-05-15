@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Maintenance = () => {
 
-    document.title = "Maintenance | Tailwick - React Admin & Dashboard Template";
+    document.title = "Maintenance | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;

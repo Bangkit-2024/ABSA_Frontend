@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const BasicTwoSteps = () => {
 
-    document.title = "Two Steps | Tailwick - React Admin & Dashboard Template";
+    document.title = "Two Steps | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;
