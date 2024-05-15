@@ -1,29 +1,27 @@
 import React, { ChangeEvent } from "react";
 import { BadgeCheck, Dribbble, Facebook, Github, Globe, ImagePlus, Instagram, Linkedin, Mail, MapPin, MoreHorizontal, UserCircle } from "lucide-react";
-import { Dropdown } from "Common/Components/Dropdown";
 
-// IMage
-import avatar1 from "assets/images/users/avatar-1.png";
+// IMageimport avatar1 from "assets/images/users/avatar-1.png";
 
 const AccountInfo = ({ className }: any) => {
 
-    const [selectedImage, setSelectedImage] = React.useState<string | ArrayBuffer | null>(avatar1);
+    // const [selectedImage, setSelectedImage] = React.useState<string | ArrayBuffer | null>(avatar1);
 
-    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    // const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
 
-        const file = event.target.files?.[0];
+    //     const file = event.target.files?.[0];
 
-        if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(imageUrl);
-        }
-    };
+    //     if (file) {
+    //         const imageUrl = URL.createObjectURL(file);
+    //         setSelectedImage(imageUrl);
+    //     }
+    // };
 
     return (
         <React.Fragment>
             <div className={className}>
-                <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 2xl:grid-cols-12">
-                    <div className="lg:col-span-2 2xl:col-span-1">
+                <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 2xl:grid-cols-12 ml-7">
+                    {/* <div className="lg:col-span-2 2xl:col-span-1">
                         <div className="relative inline-block size-20 rounded-full shadow-md bg-slate-100 profile-user xl:size-28">
                             <img src={selectedImage?.toString() ?? avatar1} alt="" className="object-cover border-0 rounded-full img-thumbnail user-profile-image" />
                             <div className="absolute bottom-0 flex items-center justify-center size-8 rounded-full ltr:right-0 rtl:left-0 profile-photo-edit">
@@ -35,7 +33,7 @@ const AccountInfo = ({ className }: any) => {
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="lg:col-span-10 2xl:col-span-9">
                         <h5 className="mb-1">Paula Keenan <BadgeCheck className="inline-block size-4 text-sky-500 fill-sky-100 dark:fill-custom-500/20"></BadgeCheck></h5>
                         <div className="flex gap-3 mb-4">
@@ -79,7 +77,7 @@ const AccountInfo = ({ className }: any) => {
                         </div>
                     </div>
                     <div className="lg:col-span-12 2xl:col-span-2">
-                        <div className="flex gap-2 2xl:justify-end">
+                        {/* <div className="flex gap-2 2xl:justify-end">
                             <a href="mailto:themesdesign@gmail.com" className="flex items-center justify-center size-[37.5px] p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20">
                                 <Mail className="size-4"></Mail>
                             </a>
@@ -107,7 +105,7 @@ const AccountInfo = ({ className }: any) => {
                                     </li>
                                 </Dropdown.Content>
                             </Dropdown>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
