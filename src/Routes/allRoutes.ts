@@ -1,5 +1,5 @@
 // dashboard
-import Ecommerce from "pages/Dashboards/Ecommerce";
+import Ecommerce from "pages/Dashboards";
 
 //Charts
 
