@@ -1,17 +1,46 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { BasicBarChart } from "pages/Dashboards/BasicBarChart";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import SimplePie from "./BasicPieCharts";
+import { StackedBarChart } from "./StackedBarChart";
 
-const Ecommerce = () => {
+const Dashboard = () => {
+  const navigate = useNavigate();
+  useEffect(() => navigate("/dashboard"), [navigate]);
 
-    const navigate = useNavigate();
-    useEffect(() => navigate("/dashboard"), [navigate]);
-
-    return (
-        <React.Fragment>
-            <div className="grid grid-cols-12 gap-x-5">
+  return (
+    <React.Fragment>
+      <div className="mt-5 md:flex md:gap-3">
+        <div className="basis-5/12">A</div>
+        <div className="md:basis-7/12 md:grid md:grid-cols-2 md:gap-3">
+            {/* Aspect Chart */}
+          <div className="card">
+            
+            <div className="card-body">
+              <h6 className="mb-4 text-15">Aspect</h6>
+              <BasicBarChart chartId="basicBar" />
             </div>
-        </React.Fragment>
-    );
+          </div>
+
+          {/* Pie Chart for Sentiment */}
+          <div className="card">
+            <div className="card-body">
+              <h6 className="mb-4 text-15">Sentiment</h6>
+              <SimplePie chartId="sentiment-chart" />
+            </div>
+          </div>
+
+          {/* Aspect Based Sentiment Chart */}
+          <div className="card col-span-2">
+            <div className="card-body">
+              <h6 className="mb-4 text-15">Aspect & Sentiment</h6>
+              <StackedBarChart chartId="aspect-based-chart"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  );
 };
 
-export default Ecommerce;
+export default Dashboard;
