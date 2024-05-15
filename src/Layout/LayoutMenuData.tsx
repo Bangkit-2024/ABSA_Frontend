@@ -39,7 +39,7 @@ const menuData: any = [
             },
             {
                 id: "settingsUserProfile",
-                label: "Settings User Profile",
+                label: "Settings",
                 link: "/setting-user-profile",
                 parentId: "profileInfo",
             }
