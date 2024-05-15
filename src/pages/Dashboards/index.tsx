@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SimplePie from "./BasicPieCharts";
 import { StackedBarChart } from "./StackedBarChart";
 import SimpleWordCloud from "./WordCloud";
+import AspectBasedPanel from "./AspectBasedPanel";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -12,7 +13,9 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className="mt-5 md:flex md:gap-3">
-        <div className="basis-5/12">A</div>
+        <div className="basis-5/12">
+          <AspectBasedPanel/>
+        </div>
         <div className="md:basis-7/12 md:grid md:grid-cols-2 md:gap-3">
             {/* Aspect Chart */}
           <div className="card">
