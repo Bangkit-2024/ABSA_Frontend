@@ -1,5 +1,5 @@
 // dashboard
-import Ecommerce from "pages/Dashboards";
+import Dashboard from "pages/Dashboards";
 
 //Charts
 
@@ -50,8 +50,8 @@ interface RouteObject {
 
 const authProtectedRoutes: Array<RouteObject> = [
   // Dashboard
-  { path: "/", component: Ecommerce },
-  { path: "/dashboard", component: Ecommerce },
+  { path: "/", component: Dashboard },
+  { path: "/dashboard", component: Dashboard },
 
   // File Upload
   { path: "/file-upload", component: FileUpload },
