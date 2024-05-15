@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SimplePie from "./BasicPieCharts";
 import { StackedBarChart } from "./StackedBarChart";
+import SimpleWordCloud from "./WordCloud";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -35,6 +36,14 @@ const Dashboard = () => {
             <div className="card-body">
               <h6 className="mb-4 text-15">Aspect & Sentiment</h6>
               <StackedBarChart chartId="aspect-based-chart"/>
+            </div>
+          </div>
+          {/* TODO: Fix This word cloud that cause css error */}
+          {/* Word Cloud Chart */}
+          <div className="card col-span-2">
+            <div className="card-body">
+              <h6 className="mb-4 text-15">Word Cloud Chart</h6>
+              <SimpleWordCloud/>
             </div>
           </div>
         </div>
