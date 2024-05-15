@@ -4,7 +4,6 @@ import AccountInfo from "../UserInfo/AccountInfo";
 import { Nav } from "Common/Components/Tab/Nav";
 import Tab from "Common/Components/Tab/Tab";
 import PersonalTabs from "./PersonalTabs";
-import IntegrationTabs from "./IntegrationTabs";
 import ChangePasswordTabs from "./ChangePasswordTabs";
 import PrivacyPolicyTabs from "./PrivacyPolicyTabs";
 

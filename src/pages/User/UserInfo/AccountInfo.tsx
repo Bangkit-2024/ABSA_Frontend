@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from "react";
-import { BadgeCheck, Dribbble, Facebook, Github, Globe, ImagePlus, Instagram, Linkedin, Mail, MapPin, MoreHorizontal, UserCircle } from "lucide-react";
+import React from "react";
+import { BadgeCheck, Dribbble, Facebook, Github, Globe, Instagram, Linkedin, MapPin, UserCircle } from "lucide-react";
 
 // IMageimport avatar1 from "assets/images/users/avatar-1.png";
 
