@@ -36,7 +36,6 @@ import Login from "pages/Authentication/Login";
 // File Upload
 import FileUpload from "pages/Components/FileUpload";
 
-
 // Profile Information
 import userInfo from "pages/User/UserInfo/index";
 

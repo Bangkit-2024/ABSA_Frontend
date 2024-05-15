@@ -1,17 +1,6 @@
 import React from "react";
-import { Goal, MoveRight, Package, Wallet } from "lucide-react";
-
-// IMage
-import medal from "assets/images/medal.png";
-import image1 from "assets/images/payment/img-01.png";
-import image2 from "assets/images/payment/img-02.png"
-import image3 from "assets/images/payment/img-03.png"
-import RecentStatistics from "./RecentStatistics";
 
 interface TableData { label: string; value?: string; link?: boolean }
-interface EarningReport { icon: any; amount: string; description: string }
-interface Transaction { date: string; amount: string; status: string; description: string; text: string }
-interface CardOverview { id: number; name: string; image: string; cardNumber: string; isPrimary: boolean }
 
 const tableData: TableData[] = [
     { label: "Designation", value: "CEO & Founder" },
@@ -23,66 +12,25 @@ const tableData: TableData[] = [
     { label: "Joining Date", value: "01 July 2023" },
 ];
 
-const earningReports: EarningReport[] = [
-    { icon: Wallet, amount: "$245.98", description: "Total Earning" },
-    { icon: Goal, amount: "$125.23", description: "Items Earning" },
-    { icon: Package, amount: "$21.49", description: "Contributor Bonus" },
-];
-
-const transactions: Transaction[] = [
-    { date: "2 April, 2023", amount: "$321.00", status: "Paid", description: "Subscription", text: "text-green-500" },
-    { date: "8 June, 2023", amount: "$184.00", status: "Pending", description: "April Autofile", text: "text-yellow-500" },
-    { date: "15 July, 2023", amount: "$325.00", status: "Pending", description: "Subscription", text: "text-yellow-500" },
-    { date: "29 July, 2023", amount: "$321.00", status: "Paid", description: "Prepaid Bill", text: "text-green-500" },
-    { date: "12 Aug, 2023", amount: "$189.99", status: "Paid", description: "Subscription", text: "text-green-500" },
-];
-
-const cardOverview: CardOverview[] = [
-    { id: 1, name: "Mastercard", image: image1, cardNumber: "XXXX XXXX XXXX 1501", isPrimary: true },
-    { id: 2, name: "Visa Card", image: image2, cardNumber: "XXXX XXXX XXXX 9871", isPrimary: false },
-    { id: 3, name: "Discover Network", image: image3, cardNumber: "XXXX XXXX XXXX 7435", isPrimary: false },
-];
-
 const OverviewTabs = () => {
     return (
         <React.Fragment>
             <div className="grid grid-cols-1 gap-x-5 2xl:grid-cols-12">
-                <div className="2xl:col-span-9">
+                <div className="2xl:col-span-12">
                     <div className="grid grid-cols-1 gap-x-5 xl:grid-cols-12">
-                        <div className="xl:col-span-9">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h6 className="mb-3 text-15">Recent Statistics</h6>
-                                    <RecentStatistics chartId="recentStatistics" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="text-center card bg-custom-500 xl:col-span-3">
-                            <div className="flex flex-col h-full card-body">
-                                <img src={medal} alt="" className="w-2/6 mx-auto" />
-                                <div className="mt-5 mb-auto">
-                                    <h5 className="mb-1 text-white">Congratulation Paula</h5>
-                                    <p className="text-custom-200">on your outstanding achievement! Your hard work and dedication have truly paid off.</p>
-                                </div>
-                                <div className="p-3 mt-5 rounded-md bg-custom-600">
-                                    <h2 className="mb-1 text-white">1054</h2>
-                                    <p className="text-custom-200">It's very easy to convert your points to cash now.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div className="card">
                         <div className="card-body">
-                            <h6 className="mb-3 text-15">Overview</h6>
+                            <h6 className="mb-3 text-15">About Me</h6>
                             <p className="mb-2 text-slate-500 dark:text-zink-200">A Web Developer creates and designs different websites for clients. They are responsible for their aesthetic as well as their function. Professionals in this field may also need to be able to ensure sites are compatible with multiple types of media. Web Developers need to have a firm understanding of programming and graphical design. Having a strong resume that emphasizes these attributes makes it significantly easier to get hired as a Web Developer.</p>
                             <p className="text-slate-500 dark:text-zink-200">As a web designer, my objective is to make a positive impact on clients, co-workers, and the Internet using my skills and experience to design compelling and attractive websites. Solving code problems. Editing & Design with designing team in the company to build perfect web designs.</p>
                         </div>
                     </div>
                 </div>
-                <div className="2xl:col-span-3">
+                <div className="2xl:col-span-12">
                     <div className="card">
                         <div className="card-body">
-                            <h6 className="mb-4 text-15">Personal </h6>
+                            <h6 className="mb-4 text-15">Personal Information</h6>
                             <div className="overflow-x-auto">
                                 <table className="w-full ltr:text-left rtl:ext-right">
                                     <tbody>
@@ -102,32 +50,11 @@ const OverviewTabs = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <h6 className="mb-4 text-15">Earning Reports</h6>
-
-                            <div className="divide-y divide-slate-200 dark:divide-zink-500">
-                                {
-                                    (earningReports || [])?.map((item: EarningReport, index: number) => (
-                                        <div className={`flex items-center gap-3 ${index === earningReports.length - 1 ? "pt-3" : index === earningReports.length - 2 ? "py-3" : "pb-3"}`} key={index}>
-                                            <div className="flex items-center justify-center size-12 rounded-full bg-slate-100 dark:bg-zink-600">
-                                                <item.icon className="size-5 text-slate-500 dark:text-zink-200"></item.icon>
-                                            </div>
-                                            <div>
-                                                <h6 className="text-lg">{item.amount}</h6>
-                                                <p className="text-slate-500 dark:text-zink-200">{item.description}</p>
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 gap-x-5 lg:grid-cols-2 2xl:grid-cols-3">
-                <div className="card">
+                {/* <div className="card">
                     <div className="card-body">
                         <h6 className="mb-3 text-15">Payment History</h6>
                         <div className="overflow-x-auto">
@@ -158,8 +85,8 @@ const OverviewTabs = () => {
                             </table>
                         </div>
                     </div>
-                </div>
-                <div className="card">
+                </div> */}
+                {/* <div className="card">
                     <div className="card-body">
                         <h6 className="mb-3 text-15">Card Overview</h6>
 
@@ -185,8 +112,8 @@ const OverviewTabs = () => {
                             <a href="#!" className="inline-block underline text-custom-500">Add New Card <MoveRight className="inline-block size-4 ml-2 rtl:-rotate-180"></MoveRight></a>
                         </div>
                     </div>
-                </div>
-                <div className="card">
+                </div> */}
+                {/* <div className="card">
                     <div className="card-body">
                         <div className="flex items-center mb-3">
                             <h6 className="grow text-15">Plan Details</h6>
@@ -217,7 +144,7 @@ const OverviewTabs = () => {
                             <li>Easy to Customize</li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
             </div>
         </React.Fragment>
     );
