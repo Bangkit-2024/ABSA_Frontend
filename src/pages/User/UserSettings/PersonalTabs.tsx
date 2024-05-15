@@ -28,25 +28,11 @@ const PersonalTabs = () => {
                             </div>
                             <div className="xl:col-span-6">
                                 <label htmlFor="joiningDateInput" className="inline-block mb-2 text-base font-medium">Birth of Date</label>
-                                <Flatpickr
-                                    options={{
-                                        dateFormat: "d M, Y",
-                                        defaultDate: "24 Oct, 2023"
-                                    }}
-                                    placeholder="Select Date"
-                                    className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                />
+                                <input type="date" name="" id="" className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"/>
                             </div>
                             <div className="xl:col-span-6">
                                 <label htmlFor="joiningDateInput" className="inline-block mb-2 text-base font-medium">Joining Date</label>
-                                <Flatpickr
-                                    options={{
-                                        dateFormat: "d M, Y",
-                                        defaultDate: "30 Nov, 2023"
-                                    }}
-                                    placeholder="Select Date"
-                                    className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                />
+                                <input type="date" name="" id="" className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"/>
                             </div>
                             <div className="xl:col-span-12">
                                 <label htmlFor="inputValue" className="block mb-2 text-base font-medium">Description</label>
