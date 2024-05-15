@@ -29,11 +29,14 @@ const HorizontalLayout = (props: any) => {
             for (let i = 0; i < menuData.length; i++) {
                 const itemWidth = navbarNav?.children[i]?.offsetWidth;
                 totalItemsWidth += itemWidth;
-                if (totalItemsWidth <= menuWidth - 50 || window.innerWidth < 768) {
-                    visibleItems.push(menuData[i]);
-                } else {
-                    hiddenItems.push(menuData[i]);
-                }
+                visibleItems.push(menuData[i]);
+
+                // TODO: There is something wrong with this idk what, fn
+                // if (totalItemsWidth <= menuWidth - 50 || window.innerWidth < 768) {
+                //     visibleItems.push(menuData[i]);
+                // } else {
+                //     hiddenItems.push(menuData[i]);
+                // }
 
                 // If hiddenItems length > 0, show the "More" menu
                 if (hiddenItems.length > 0) {
