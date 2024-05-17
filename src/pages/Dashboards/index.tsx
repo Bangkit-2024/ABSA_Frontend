@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import SimplePie from "./BasicPieCharts";
 import { StackedBarChart } from "./StackedBarChart";
 import SimpleWordCloud from "./WordCloud";
-import AspectBasedPanel from "./AspectBasedPanel";
+import AspectBasedStats from "pages/Components/Dashboard/AspectBasedBox";
+import AspectBasedList from "pages/Components/Dashboard/AspectBasedList";
 
 const Dashboard = () => {
+  document.title = "Dashboard | Bizzagi - Aspect Based Sentiment Analysis";
   const navigate = useNavigate();
   useEffect(() => navigate("/dashboard"), [navigate]);
 
@@ -14,12 +16,14 @@ const Dashboard = () => {
     <React.Fragment>
       <div className="mt-5 md:flex md:gap-3">
         <div className="basis-5/12">
-          <AspectBasedPanel/>
+          <div className="bg-white shadow-sm w-full">
+            <AspectBasedStats />
+            <AspectBasedList />
+          </div>
         </div>
-        <div className="md:basis-7/12 md:grid md:grid-cols-2 md:gap-3">
-            {/* Aspect Chart */}
+        <div className="md:basis-7/12 md:grid md:grid-cols-2 md:gap-2">
+          {/* Aspect Chart */}
           <div className="card">
-            
             <div className="card-body">
               <h6 className="mb-4 text-15">Aspect</h6>
               <BasicBarChart chartId="basicBar" />
@@ -38,7 +42,7 @@ const Dashboard = () => {
           <div className="card col-span-2">
             <div className="card-body">
               <h6 className="mb-4 text-15">Aspect & Sentiment</h6>
-              <StackedBarChart chartId="aspect-based-chart"/>
+              <StackedBarChart chartId="aspect-based-chart" />
             </div>
           </div>
           {/* TODO: Fix This word cloud that cause css error */}
@@ -46,7 +50,7 @@ const Dashboard = () => {
           <div className="card col-span-2">
             <div className="card-body">
               <h6 className="mb-4 text-15">Word Cloud Chart</h6>
-              <SimpleWordCloud/>
+              <SimpleWordCloud />
             </div>
           </div>
         </div>
