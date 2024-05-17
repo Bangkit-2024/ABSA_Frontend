@@ -18,21 +18,8 @@ const menuData: any = [
     {
         id: "uploads",
         label: 'File Upload',
-        link: "/#",
         icon: <FileUp />,
-        subItems: [
-            {
-                id: 'upload-data',
-                label: 'Upload CSV',
-                parentId: 'uploads',
-            },
-            {
-                id: 'upload-data',
-                label: 'Upload Excel',
-                link: '/#',
-                parentId: 'uploads'
-            },
-        ]
+        link: "/file-upload",
     },
     {
         label: 'Users',
@@ -40,14 +27,28 @@ const menuData: any = [
     },
     {
         id: "user-profile",
-        label: 'Profile',
-        link: "/#",
-        icon: <UserRoundCog />
+        label: 'User',
+        icon: <UserRoundCog />,
+        parentId : "profileInfo",
+        subItems: [
+            {
+            id: "profileInfo",
+            label: "User Profile",
+            link: "/user-information",
+            parentId: "profileInfo",
+            },
+            {
+                id: "settingsUserProfile",
+                label: "Settings",
+                link: "/setting-user-profile",
+                parentId: "profileInfo",
+            }
+        ]
     },
     {
         id: "logout",
         label: 'Logout',
-        link: "/#",
+        link: "/logout",
         icon: <PowerOff />
     },
 

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const BasicResetPassword = () => {
 
-    document.title = "Reset Password | Tailwick - React Admin & Dashboard Template";
+    document.title = "Reset Password | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;

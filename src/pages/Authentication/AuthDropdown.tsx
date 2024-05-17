@@ -5,7 +5,6 @@ import { Dropdown } from "Common/Components/Dropdown";
 import us from "assets/images/flags/us.svg";
 import id from "assets/images/flags/20/id.svg";
 
-
 const AuthDropdown = () => {
 
     const [dropImage, setDropImage] = React.useState(us);
@@ -29,7 +28,6 @@ const AuthDropdown = () => {
                             <img src={id} alt="" className="object-cover h-4 rounded-full" />
                             <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 group-hover/items:text-custom-500 dark:text-zink-200 dark:group-hover/items:text-custom-500">English</h6>
                         </a>
-
                     </Dropdown.Content>
                 </Dropdown>
             </div>

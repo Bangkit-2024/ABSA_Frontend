@@ -1,5 +1,8 @@
 // dashboard
-import Ecommerce from "pages/Dashboards/Ecommerce";
+import Dashboard from "pages/Dashboards";
+
+//Charts
+
 
 // Landing
 import OnePage from "pages/Components/Landing/Onepage";
@@ -30,6 +33,15 @@ import Offline from "pages/AuthenticationInner/Offline";
 import Pages404 from "pages/AuthenticationInner/Pages404";
 import Login from "pages/Authentication/Login";
 
+// File Upload
+import FileUpload from "pages/Components/FileUpload";
+
+// Profile Information
+import userInfo from "pages/User/UserInfo/index";
+
+// User Profile Settings
+import userSetting from "pages/User/UserSettings/index";
+
 interface RouteObject {
   path: string;
   component: React.ComponentType<any>; // Use React.ComponentType to specify the type of the component
@@ -38,8 +50,20 @@ interface RouteObject {
 
 const authProtectedRoutes: Array<RouteObject> = [
   // Dashboard
-  { path: "/", component: Ecommerce },
-  { path: "/dashboard", component: Ecommerce },
+  { path: "/", component: Dashboard },
+  { path: "/dashboard", component: Dashboard },
+
+  // File Upload
+  { path: "/file-upload", component: FileUpload },
+
+  // User Profile Information
+  { path: "/user-information", component: userInfo},
+
+  // User Profile settings
+  { path: "/setting-user-profile", component: userSetting },
+
+  // File uploads
+  { path: "/file-upload", component: FileUpload },
 
 ];
 
@@ -74,7 +98,6 @@ const publicRoutes = [
   { path: "/login", component: Login },
   { path: "/logout", component: Logout },
   { path: "/register", component: Register },
-
 ]
 
 export { authProtectedRoutes, publicRoutes };

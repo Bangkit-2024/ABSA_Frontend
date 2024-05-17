@@ -15,9 +15,9 @@ interface Notification {
 
 const notification: Notification[] = [
     { id: 1, type: "follower", imageClassName: "size-10 rounded-md shrink-0 bg-slate-100", image: avatar3, boldName: "@willie_passem", name: "followed you", time: "4 sec", date: "Wednesday 03:42 PM" },
-    { id: 2, type: "mention", imageClassName: "size-10 bg-yellow-100 rounded-md shrink-0", image: avatar5, boldName: "@caroline_jessica", name: "commented on your post", time: "15 min", description: "Amazing! Fast, to the point, professional and really amazing to work with them!!!", date: "Wednesday 03:42 PM", },
-    { id: 3, type: "invite", imageClassName: "size-10 rounded-md shrink-0 bg-slate-100", name: "Successfully purchased a business plan for", price: "$199.99", time: "Yesterday", date: "Monday 11:26 AM" },
-    { id: 4, type: "mention", boldName: "@scott", name: "liked your post", time: "1 Week", date: "Thursday 06:59 AM" },
+    // { id: 2, type: "mention", imageClassName: "size-10 bg-yellow-100 rounded-md shrink-0", image: avatar5, boldName: "@caroline_jessica", name: "commented on your post", time: "15 min", description: "Amazing! Fast, to the point, professional and really amazing to work with them!!!", date: "Wednesday 03:42 PM", },
+    // { id: 3, type: "invite", imageClassName: "size-10 rounded-md shrink-0 bg-slate-100", name: "Successfully purchased a business plan for", price: "$199.99", time: "Yesterday", date: "Monday 11:26 AM" },
+    // { id: 4, type: "mention", boldName: "@scott", name: "liked your post", time: "1 Week", date: "Thursday 06:59 AM" },
 ]
 
 const NotificationDropdown = () => {
@@ -39,15 +39,6 @@ const NotificationDropdown = () => {
                         <ul className="flex flex-wrap w-full p-1 mb-2 text-sm font-medium text-center rounded-md filter-btns text-slate-500 bg-slate-100 nav-tabs dark:bg-zink-500 dark:text-zink-200">
                             <li className={`group grow ${filter === "all" ? "active" : ""}`} onClick={() => setFilter("all")}>
                                 <Link to="#" data-filter="all" className="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent group-[.active]:bg-white group-[.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:group-[.active]:bg-zink-600 -mb-[1px]">View All</Link>
-                            </li>
-                            <li className={`group grow ${filter === "mention" ? "active" : ""}`} onClick={() => setFilter("mention")}>
-                                <Link to="#" data-filter="mention" className="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent group-[.active]:bg-white group-[.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:group-[.active]:bg-zink-600 -mb-[1px]">Mentions</Link>
-                            </li>
-                            <li className={`group grow ${filter === "follower" ? "active" : ""}`} onClick={() => setFilter("follower")}>
-                                <Link to="#" data-filter="follower" className="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent group-[.active]:bg-white group-[.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:group-[.active]:bg-zink-600 -mb-[1px]">Followers</Link>
-                            </li>
-                            <li className={`group grow ${filter === "invite" ? "active" : ""}`} onClick={() => setFilter("invite")}>
-                                <Link to="#" data-filter="invite" className="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent group-[.active]:bg-white group-[.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:group-[.active]:bg-zink-600 -mb-[1px]">Invites</Link>
                             </li>
                         </ul>
 
@@ -88,16 +79,6 @@ const NotificationDropdown = () => {
 
                         </div>
                     </SimpleBar>
-                    <div className="flex items-center gap-2 p-4 border-t border-slate-200 dark:border-zink-500">
-                        <div className="grow">
-                            <a href="#!">Manage Notification</a>
-                        </div>
-                        <div className="shrink-0">
-                            <button type="button" className="px-2 py-1.5 text-xs text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100">View All Notification
-                                <MoveRight className="inline-block size-3 ml-1"></MoveRight>
-                            </button>
-                        </div>
-                    </div>
                 </Dropdown.Content >
             </Dropdown >
         </>

@@ -10,7 +10,7 @@ import Contact from "./Contact";
 import Footer from "./Footer";
 
 const OnePage = () => {
-    document.title = "One Page | Tailwick - React Admin & Dashboard Template";
+    document.title = "One Page | Bizzagi - Aspect Based Sentiment Analysis";
 
     const windowScroll = () => {
         const backToTop = document.getElementById("back-to-top");

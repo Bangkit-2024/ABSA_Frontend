@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Offline = () => {
 
-    document.title = "Offline | Tailwick - React Admin & Dashboard Template";
+    document.title = "Offline | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;

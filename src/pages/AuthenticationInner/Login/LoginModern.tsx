@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const LoginModern = () => {
 
-    document.title = "Sign In | Tailwick - React Admin & Dashboard Template";
+    document.title = "Sign In | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;

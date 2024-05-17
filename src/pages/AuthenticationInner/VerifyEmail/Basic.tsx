@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const BasicEmailVerify = () => {
 
-    document.title = "Verify Email | Tailwick - React Admin & Dashboard Template";
+    document.title = "Verify Email | Bizzagi - Aspect Based Sentiment Analysis";
 
     React.useEffect(() => {
         const bodyElement = document.body;
