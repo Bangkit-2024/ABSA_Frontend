@@ -9,7 +9,7 @@ import ChangePasswordTabs from "./ChangePasswordTabs";
 const userSetting = () => {
     return (
         <React.Fragment>
-            <BreadCrumb title='Settings User Profile' pageTitle='User' />
+            <BreadCrumb title='Settings' pageTitle='User' />
             <Tab.Container defaultActiveKey="personalTabs">
                 <div className="card">
                     <AccountInfo className="card-body" />
