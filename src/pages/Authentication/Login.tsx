@@ -1,13 +1,14 @@
 import React from "react";
 import logoLight from 'assets/images/logo-light.png';
 import { Link } from "react-router-dom";
-import { loginUser, socialLogin } from "slices/thunk";
+import { loginUser } from "slices/thunk";
 import img1 from "assets/images/auth/img-01.png";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { useFormik as useFormic } from "formik";
 import * as Yup from "yup";
 import withRouter from "Common/withRouter";
+import axios from "axios";
 
 const Login = (props: any) => {
   document.title = "Login | Bizzagi - Aspect Based Sentiment Analysis";
@@ -31,15 +32,15 @@ const Login = (props: any) => {
     enableReinitialize: true,
 
     initialValues: {
-      email: user.email || "admin@themesbrand.com" || "",
+      username: user.username || "admin@themesbrand.com" || "",
       password: user.password || "123456" || "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().required("Please Enter Your email"),
+      username: Yup.string().required("Please Enter Your username"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values: any) => {
-      dispatch(loginUser(values, props.router.navigate));
+      dispatch(loginUser(values,props.router.navigate));
     },
   });
 
@@ -90,23 +91,23 @@ const Login = (props: any) => {
                       htmlFor="username"
                       className="inline-block mb-2 text-base font-medium"
                     >
-                      UserName/ Email ID
+                      UserName/ username ID
                     </label>
                     <input
                       type="text"
                       id="username"
                       className="form-input dark:bg-zink-600/50 border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                      placeholder="Enter username or email"
+                      placeholder="Enter username or username"
                       onChange={validation.handleChange}
                       onBlur={validation.handleBlur}
-                      value={validation.values.email || ""}
+                      value={validation.values.username || ""}
                     />
-                    {validation.touched.email && validation.errors.email ? (
+                    {validation.touched.username && validation.errors.username ? (
                       <div
-                        id="email-error"
+                        id="username-error"
                         className="mt-1 text-sm text-red-500"
                       >
-                        {validation.errors.email}
+                        {validation.errors.username}
                       </div>
                     ) : null}
                   </div>

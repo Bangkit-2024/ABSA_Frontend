@@ -14,7 +14,7 @@ if (token)
 // intercepting to capture errors
 axios.interceptors.response.use(
   function (response) {
-    return response.data ? response.data : response;
+    return response
   },
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
