@@ -6,6 +6,7 @@ interface absaComponent {
 }
 
 interface absaDisplay {
+  id:string|number,
   comment: string;
   absa: absaComponent[];
 }
@@ -13,117 +14,13 @@ interface absaDisplay {
 const exampleData: absaDisplay[] = [
   {
     comment: "Lorem Ipsum dolor sit Amet",
+    id:1,
     absa: [
         { aspect: "Rasa", sentiment: 1 },
         { aspect: "Harga", sentiment: 1 },
         { aspect: "Tempat", sentiment: 1 },
     ],
   },
-  {
-    comment: "Lorem Ipsum dolor sit Amet",
-    absa: [
-        { aspect: "Rasa", sentiment: 1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: 0 },
-    ],
-  },
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  },  
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-  {
-    comment: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis incidunt, fugiat pariatur vitae officia animi, nesciunt quos cumque expedita quia corrupti dolorem maiores nisi blanditiis! Ducimus culpa necessitatibus fuga in?",
-    absa: [
-        { aspect: "Rasa", sentiment: -1 },
-        { aspect: "Harga", sentiment: -1 },
-        { aspect: "Tempat", sentiment: -1 },
-    ],
-  }, 
-
-  {
-    comment: "Lorem Ipsum dolor sit Amet",
-    absa: [
-        { aspect: "Rasa", sentiment: 1 },
-        { aspect: "Pelayanan", sentiment: 1 },
-        { aspect: "Tempat", sentiment: 1 },
-    ],
-  }
 ];
 
 function AspectBasedElement({absaData}:{absaData:absaDisplay}) {
@@ -132,14 +29,14 @@ function AspectBasedElement({absaData}:{absaData:absaDisplay}) {
         <div className="py-2">{absaData.comment}</div>
         <div className="text-xs text-center">
             {absaData.absa.map(
-                ({aspect,sentiment}:absaComponent)=>{
+                ({aspect,sentiment}:absaComponent,i)=>{
                     let color = "slate"
                     if(sentiment===1){
                         color="green"
                     }else if(sentiment===-1){
                         color="red"
                     }
-                    return <span className={`me-2 px-2.5 py-0.5 inline-block text-[0.75rem] font-medium rounded border bg-${color}-100 border-transparent text-${color}-500 dark:bg-${color}-500/20 dark:border-transparent`}>{aspect}</span>
+                    return <span key={i} className={`me-2 px-2.5 py-0.5 inline-block text-[0.75rem] font-medium rounded border bg-${color}-100 border-transparent text-${color}-500 dark:bg-${color}-500/20 dark:border-transparent`}>{aspect}</span>
                 }
             )}
         </div>
@@ -155,7 +52,7 @@ export default function AspectBasedList() {
         
           {absaList.map(
             (absa: absaDisplay): React.ReactElement => (
-              <AspectBasedElement absaData={absa} />
+              <AspectBasedElement absaData={absa} key={absa.id} />
             )
           )}
         
