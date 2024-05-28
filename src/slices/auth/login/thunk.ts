@@ -1,11 +1,8 @@
-import { postFakeLogin } from "helpers/fakebackend_helper";
-import { loginError, loginSuccess, logoutSuccess } from "./reducer";
-import { ThunkAction } from "redux-thunk";
 import { Action, Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { apiLogin, apiLogout } from "services/auth";
 import { RootState } from "slices";
-import { getFirebaseBackend } from "helpers/firebase_helper";
-import { GetThunkAPI, createAsyncThunk } from "@reduxjs/toolkit";
-import {apiLogin, apiLogout, apiProfile, apiRefresh, apiSignUp} from "services/auth"
+import { loginError, loginSuccess } from "./reducer";
 
 interface User {
     username: string;
