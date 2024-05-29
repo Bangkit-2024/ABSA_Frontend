@@ -12,6 +12,11 @@ import RegisterReducer from "./auth/register/reducer";
 // userProfile
 import ProfileReducer from "./auth/profile/reducer";
 
+// review
+import ReviewReducer from "./reviews/reducer"
+
+import BootReducer from './bootstrap/reducer'
+
 
 
 const rootReducer = combineReducers({
@@ -19,6 +24,8 @@ const rootReducer = combineReducers({
     Login: LoginReducer,
     Register: RegisterReducer,
     Profile: ProfileReducer,
+    Review : ReviewReducer,
+    Boot:BootReducer,
 });
 
 

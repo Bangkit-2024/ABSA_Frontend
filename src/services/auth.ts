@@ -9,11 +9,6 @@ interface userLogin{
   password:string
 }
 
-interface ApiResponse {
-  data: any
-  status: number
-}
-
 interface userRegister extends userLogin{
   first_name: string,
   last_name: string,
@@ -50,14 +45,14 @@ export function apiProfile() {
 }
 
 export async function apiRefresh() {
-  const token = JSON.parse(localStorage.getItem("userToken")||"{}");
+  const token = JSON.parse(localStorage.getItem("authUser")||"{}");
   const response = await axios
     .post(AUTH_LOGIN + "refresh/", { refresh: token.refresh });
   const new_token = {
     ...token,
     access: response.data.access,
   };
-  localStorage.setItem("userToken", JSON.stringify(new_token));
+  localStorage.setItem("authUser", JSON.stringify(new_token));  
   return new_token;
 }
 

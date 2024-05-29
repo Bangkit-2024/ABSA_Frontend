@@ -8,7 +8,6 @@ import { createSelector } from "reselect";
 import { useFormik as useFormic } from "formik";
 import * as Yup from "yup";
 import withRouter from "Common/withRouter";
-import axios from "axios";
 
 const Login = (props: any) => {
   document.title = "Login | Bizzagi - Aspect Based Sentiment Analysis";
@@ -32,8 +31,8 @@ const Login = (props: any) => {
     enableReinitialize: true,
 
     initialValues: {
-      username: user.username || "admin@themesbrand.com" || "",
-      password: user.password || "123456" || "",
+      username: user.username || "",
+      password: user.password ||"",
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Please Enter Your username"),
@@ -68,6 +67,12 @@ const Login = (props: any) => {
                   <p className="text-slate-500 dark:text-zink-200">
                     Sign in to continue to Tailwick.
                   </p>
+                  {success && <div className="px-4 py-3 mb-3 text-sm text-green-500 border border-green-200 rounded-md bg-green-50 dark:bg-green-400/20 dark:border-green-500/50" id="successAlert">
+                                You have <b>successfully</b> signed in.
+                            </div>}
+                            {error && <div className="px-4 py-3 mb-3 text-sm text-red-500 border border-red-200 rounded-md bg-red-50 dark:bg-red-400/20 dark:border-red-500/50" id="successAlert">
+                                You have <b>failed</b> signed in.
+                            </div>}
                 </div>
 
                 <form

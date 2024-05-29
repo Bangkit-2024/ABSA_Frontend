@@ -31,8 +31,6 @@ export const loginUser = (
             username:user.username,
             password:user.password
         })
-
-        console.log(response);
         
         if (response) {
             dispatch(loginSuccess(response));
