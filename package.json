@@ -32,7 +32,7 @@
     "@types/react-dual-listbox": "^2.2.5",
     "@types/react-flatpickr": "^3.8.11",
     "apexcharts": "^3.45.2",
-    "axios": "^1.7.2",
+    "axios": "1.7.2",
     "cleave.js": "^1.6.0",
     "env-cmd": "^10.1.0",
     "firebase": "^10.7.2",
