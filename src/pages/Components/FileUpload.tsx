@@ -33,7 +33,7 @@ const FileUpload = () => {
     return (
         <React.Fragment>
             <div className="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
-                <BreadCrumb title="File Upload" pageTitle="fff" />
+                <BreadCrumb title="File Upload" pageTitle="Data" />
 
                 <div className="card">
                     <div className="card-body">

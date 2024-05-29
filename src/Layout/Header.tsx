@@ -1,4 +1,4 @@
-import { ChevronsLeft, ChevronsRight, LogOut, Search, User2 } from 'lucide-react';
+import { ChevronsLeft, ChevronsRight, LogOut, User2 } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';

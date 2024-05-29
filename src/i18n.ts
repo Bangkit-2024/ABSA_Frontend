@@ -11,6 +11,7 @@ import translationIT from "locales/it.json";
 import translationJP from "locales/jp.json";
 import translationRS from "locales/ru.json";
 import translationSP from "locales/sp.json";
+import translationID from "locales/id.json";
 
 
 // the translations
@@ -41,6 +42,9 @@ const resources = {
   },
   jp: {
     translation: translationJP,
+  },
+  id: {
+    translation: translationID,
   },
 };
 

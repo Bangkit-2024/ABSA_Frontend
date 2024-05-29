@@ -1,5 +1,5 @@
 import React from "react";
-import Flatpickr from "react-flatpickr";
+
 
 const PersonalTabs = () => {
     return (
@@ -7,7 +7,7 @@ const PersonalTabs = () => {
             <div className="card">
                 <div className="card-body">
                     <h6 className="mb-1 text-15">Personal Information</h6>
-                    <p className="mb-4 text-slate-500 dark:text-zink-200">Update your photo and personal details here easily.</p>
+                    <p className="mb-4 text-slate-500 dark:text-zink-200">Update your personal information here</p>
                     <form action="#!">
                         <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
                             <div className="xl:col-span-6">
