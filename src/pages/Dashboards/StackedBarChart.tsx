@@ -2,20 +2,28 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import useChartColors from "Common/useChartColors";
 
+import { createSelector } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+import { RootState } from "slices";
+
+import {generateSeries} from 'helpers/processdata/process'
+
+
 const StackedBarChart = ({ chartId }: any) => {
+
+    const selectReview = createSelector(
+        (state: RootState) => state.Review,
+        (review) => ({
+            series: generateSeries(review.reviews)
+        })
+      );
 
     const chartColors = useChartColors(chartId);
     //Stacked Charts
-    const series = [{
-        name: 'Positif',
-        data: [44, 55, 41, 37,15]
-    }, {
-        name: 'Negatif',
-        data: [53, 32, 33, 52, 13]
-    }, {
-        name: 'Netral',
-        data: [12, 17, 11, 9, 15]
-    }];
+    const {series} = useSelector(selectReview)
+
+    
+
     var options : any = {
         chart: {
             type: 'bar',

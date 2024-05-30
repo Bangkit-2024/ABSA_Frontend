@@ -1,4 +1,4 @@
-interface dataAspectReview {
+export interface dataAspectReview {
     id:string,
     aspect:string,
     sentiment:number|string

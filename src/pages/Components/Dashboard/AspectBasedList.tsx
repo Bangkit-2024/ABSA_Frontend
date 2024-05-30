@@ -1,35 +1,20 @@
 import React from "react";
+import { createSelector } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+import { RootState } from "slices";
+import {dataAspectReview, dataReview} from "helpers/api_data_models"
+ 
 
-interface absaComponent {
-  aspect: "Rasa"|"Harga"|"Tempat"|"Pelayanan"|"Jarak";
-  sentiment: number;
-}
 
-interface absaDisplay {
-  id:string|number,
-  comment: string;
-  absa: absaComponent[];
-}
 
-const exampleData: absaDisplay[] = [
-  {
-    comment: "Lorem Ipsum dolor sit Amet",
-    id:1,
-    absa: [
-        { aspect: "Rasa", sentiment: 1 },
-        { aspect: "Harga", sentiment: 1 },
-        { aspect: "Tempat", sentiment: 1 },
-    ],
-  },
-];
 
-function AspectBasedElement({absaData}:{absaData:absaDisplay}) {
+function AspectBasedElement({absaData}:{absaData:dataReview}) {
   return <React.Fragment>
     <div className="py-3 px-5 grid-row-2 gap-1">
-        <div className="py-2">{absaData.comment}</div>
+        <div className="py-2">{absaData.review_text}</div>
         <div className="text-xs text-center">
-            {absaData.absa.map(
-                ({aspect,sentiment}:absaComponent,i)=>{
+            {absaData!.review_aspect!.map(
+                ({aspect,sentiment}:dataAspectReview,i)=>{
                     let color = "slate"
                     if(sentiment===1){
                         color="green"
@@ -45,13 +30,20 @@ function AspectBasedElement({absaData}:{absaData:absaDisplay}) {
 }
 
 export default function AspectBasedList() {
-  const absaList: absaDisplay[] = exampleData;
+  
+  const absaSelector = createSelector(
+    (state: RootState)=> state.Review,
+    (review)=>({absaList:review.reviews})
+  )
+
+  const {absaList} = useSelector(absaSelector);
+
   return (
     <>
       <div className="grid grid-cols-1 divide-y h-[80vh] md:h-[180vh] overflow-auto">
         
           {absaList.map(
-            (absa: absaDisplay): React.ReactElement => (
+            (absa): React.ReactElement => (
               <AspectBasedElement absaData={absa} key={absa.id} />
             )
           )}
