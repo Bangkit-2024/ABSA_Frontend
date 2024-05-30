@@ -1,18 +1,16 @@
-const response = require('./response.json');
+const fs = require('fs');
 
-const nonLabelledReviews = [];
+const rawData = fs.readFileSync('response.json');
+const response = JSON.parse(rawData);
+
+const aspectIds = [];
 
 response.forEach(review => {
-    if (review.review_aspect.length === 0) {
-        nonLabelledReviews.push(review);
+    if (review.review_aspect && review.review_aspect.length > 0) {
+        review.review_aspect.forEach(aspect => {
+            aspectIds.push(aspect.id);
+        });
     }
 });
 
-
-const output = {
-    nonlabelledReview: nonLabelledReviews.length,
-    nonLabelledReviewid: nonLabelledReviews.map(review => review.company_id)
-};
-
-
-console.log(output);
+console.log(aspectIds);
