@@ -35,7 +35,6 @@ export const loginUser = (
         
         if (response) {
             dispatch(loginSuccess(response));
-            dispatch(bootstrap())
             window.location.href = "/dashboard"
         }
     } catch (error) {
