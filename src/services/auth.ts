@@ -47,7 +47,7 @@ export function apiProfile() {
 export async function apiRefresh() {
   const token = JSON.parse(localStorage.getItem("authUser")||"{}");
   const response = await axios
-    .post(AUTH_LOGIN + "refresh/", { refresh: token.refresh });
+    .post(AUTH_LOGIN + "refresh/", { refresh: token.refresh||"" });
   const new_token = {
     ...token,
     access: response.data.access,

@@ -17,6 +17,9 @@ const bootSlice = createSlice({
         builder.addCase(bootstrap.fulfilled, (state, action:any)=>{
             state.isLoading = false
         })
+        builder.addCase(bootstrap.rejected, (state,action:any)=>{
+            state.isLoading = true
+        })
     }
 })
 

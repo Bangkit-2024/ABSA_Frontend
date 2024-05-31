@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface RegisterState {
-    user: string;
     error: string;
     success: boolean;
 }
 
 const initialState: RegisterState = {
-    user: "",
     success: false,
     error: ""
 };
@@ -17,7 +15,6 @@ const registerSlice = createSlice({
     initialState,
     reducers: {
         registerSuccess(state: RegisterState, action: PayloadAction<string>) {
-            state.user = action.payload;
             state.success = true;
         },
         registerFailed(state: RegisterState, action: PayloadAction<string | any>) {

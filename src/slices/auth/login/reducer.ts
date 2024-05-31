@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const auth = JSON.parse(localStorage.getItem('authUser')||`{"refresh":null,"access":null}`)
+
 interface UserState {
     refresh:string,
     access:string
@@ -13,7 +15,7 @@ interface LoginState {
 }
 
 const initialState: LoginState = {
-    user:null,
+    user: auth,
     error: "",
     success: false,
     isUserLogout: false
@@ -33,6 +35,7 @@ const loginSlice = createSlice({
         },
         logoutSuccess(state: LoginState, action: PayloadAction<boolean>) {
             state.isUserLogout = action.payload;
+            state.success = false
         }
     },
 });

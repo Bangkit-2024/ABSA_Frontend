@@ -17,14 +17,7 @@ function Loading() : ReactElement{
     }, []);
 
     const dispatch = useDispatch()<any>;
-
-    useEffect(() => {
-        toast.promise(dispatch(bootstrap()).unwrap(), {
-            pending: "Mengambil Data",
-            success: "Berhasil Memproses Data",
-            error: "Gagal Memproses Data"
-        })
-    }, [])
+    dispatch(bootstrap())
 
     return <>
         <div className="flex content-center items-center animate-pulse h-[100vh] m-0 p-0">

@@ -43,8 +43,8 @@ export default function AspectBasedList() {
       <div className="grid grid-cols-1 divide-y h-[80vh] md:h-[180vh] overflow-auto">
         
           {absaList.map(
-            (absa): React.ReactElement => (
-              <AspectBasedElement absaData={absa} key={absa.id} />
+            (absa,i): React.ReactElement => (
+              <AspectBasedElement absaData={absa} key={i} />
             )
           )}
         

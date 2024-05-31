@@ -5,11 +5,12 @@ export const bootstrap = createAsyncThunk(
     "bootstrap/initial",
     async (_, thunkAPI) => {
         try {
-            await thunkAPI.dispatch(listReview())
-            return true;
-        } catch (e) {
-            // await thunkAPI.dispatch(logoutUser())
+            await Promise.all([
+                thunkAPI.dispatch(listReview()).unwrap()
+            ])
+            return false;
+        } catch (error) {
+            return thunkAPI.rejectWithValue("Terjadi Kesalahan")
         }
-        return false;
     }
 )

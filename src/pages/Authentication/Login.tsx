@@ -1,6 +1,6 @@
 import React from "react";
 import logoLight from 'assets/images/logo-light.png';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { loginUser } from "slices/thunk";
 import img1 from "assets/images/auth/img-01.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { createSelector } from "reselect";
 import { useFormik as useFormic } from "formik";
 import * as Yup from "yup";
 import withRouter from "Common/withRouter";
+import { RootState } from "slices";
 
 const Login = (props: any) => {
   document.title = "Login | Bizzagi - Aspect Based Sentiment Analysis";
@@ -15,24 +16,23 @@ const Login = (props: any) => {
   const dispatch = useDispatch<any>();
 
   const selectLogin = createSelector(
-    (state: any) => state.Register,
-    (state: any) => state.Login,
+    (state: RootState) => state.Register,
+    (state: RootState) => state.Login,
     (register, login) => ({
-      user: register.user,
       success: login.success,
       error: login.error,
     })
   );
 
-  const { user, success, error } = useSelector(selectLogin);
+  const {  success, error } = useSelector(selectLogin);
 
   const validation: any = useFormic({
     // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
 
     initialValues: {
-      username: user.username || "",
-      password: user.password ||"",
+      username: "",
+      password: "",
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Please Enter Your username"),

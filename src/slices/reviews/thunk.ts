@@ -2,13 +2,18 @@ import {getReviewDetail, getReviewList, deleteReview, postReview} from 'services
 import { toast } from "react-toastify";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {dataReview} from 'helpers/api_data_models'
+import { apiRefresh } from 'services/auth';
+import {logoutUser} from 'slices/thunk'
 
-export const listReview = createAsyncThunk("review/list", async () => {
+export const listReview = createAsyncThunk("review/list", async (_,thunkAPI) => {
     try {
-        const response :any = getReviewList();
+        const response :any = await getReviewList();
         return response
     } catch (error) {
-        return error;
+        apiRefresh().catch(
+           ()=> thunkAPI.dispatch(logoutUser())
+        )
+        return thunkAPI.rejectWithValue("Terjadi Kesalahan");
     }
 });
 

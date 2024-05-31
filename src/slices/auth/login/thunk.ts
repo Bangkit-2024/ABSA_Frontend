@@ -3,6 +3,7 @@ import { ThunkAction } from "redux-thunk";
 import { apiLogin, apiLogout } from "services/auth";
 import { RootState } from "slices";
 import { loginError, loginSuccess } from "./reducer";
+import { bootstrap } from "slices/thunk";
 
 interface User {
     username: string;
@@ -23,7 +24,7 @@ interface Bio{
 export const loginUser = (
     user: User,
     history: any
-): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch: Dispatch) => {    
+): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch: any) => {    
     try {
         let response: any;
 
@@ -34,7 +35,8 @@ export const loginUser = (
         
         if (response) {
             dispatch(loginSuccess(response));
-            history("/dashboard");
+            dispatch(bootstrap())
+            window.location.href = "/dashboard"
         }
     } catch (error) {
         console.log(error);
