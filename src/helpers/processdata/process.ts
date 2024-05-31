@@ -97,3 +97,77 @@ export function generateWordCloud(data:dataReview[]){
     return wordList;    
 }
 
+
+export function countSentiment(data:dataReview[]) {
+
+    let totalPositif = 0;
+    let totalNegatif = 0;
+    let totalNetral = 0;
+
+    data.forEach((review  : dataReview)=> {
+        review!.review_aspect!.forEach(aspect => {
+            switch (aspect.sentiment) {
+                case 1:
+                    totalPositif++;
+                    break;
+                case -1:
+                    totalNegatif++;
+                    break;
+                case 0:
+                    totalNetral++;
+                    break;
+                default:
+                    console.warn(`Unexpected sentiment value: ${aspect.sentiment}`);
+                    break;
+            }
+        });
+    });
+
+    return [totalPositif, totalNegatif, totalNetral];
+}
+
+export function countAspects(data:dataReview[]) {
+
+    const aspectCount = [
+        // Rasa
+        0,
+        // Menu
+        0,
+        // Tempat
+        0,
+        // Harga
+        0,
+        // Pelayanan
+        0
+    ];
+
+    data.forEach((review:dataReview) => {
+        review!.review_aspect!.forEach(aspect => {
+            switch (aspect.aspect) {
+                case 'Rasa':
+                    aspectCount[0]++;
+                    break;
+                case 'Menu':
+                    aspectCount[1]++;
+                    break;
+                case 'Tempat':
+                    aspectCount[2]++;
+                    break;
+                case 'Harga':
+                    aspectCount[3]++;
+                    break;
+                case 'Pelayanan':
+                    aspectCount[4]++;
+                    break;
+                default:
+                    console.warn(`Unexpected aspect: ${aspect.aspect}`);
+            }
+        });
+    });
+
+    const totalAspectCount = {
+        "Total": aspectCount.reduce((acc, curr) => acc + curr, 0)
+    };
+
+    return [...aspectCount, totalAspectCount["Total"]];
+}

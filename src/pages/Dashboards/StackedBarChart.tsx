@@ -17,10 +17,10 @@ const StackedBarChart = ({ chartId }: any) => {
             series: generateSeries(review.reviews)
         })
       );
-
+    const {series} = useSelector(selectReview)
     const chartColors = useChartColors(chartId);
     //Stacked Charts
-    const {series} = useSelector(selectReview)
+    
 
     
 

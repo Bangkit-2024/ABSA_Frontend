@@ -8,5 +8,5 @@ export interface dataReview {
     id?:string,
     review_text: string,
     company?: string
-    review_aspect? : dataAspectReview[]
+    review_aspect?: dataAspectReview[]
 }
