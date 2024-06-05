@@ -10,7 +10,8 @@ export default function GuessApp() {
   const mutation = useMutation(predictReview,{
     onSuccess : (data)=>{      
       setAbsaResult(data)
-    }
+    },
+    retry:1,
   });
 
   const validation: any = useFormic({

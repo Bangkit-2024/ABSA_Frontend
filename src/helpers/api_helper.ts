@@ -47,8 +47,8 @@ axios.interceptors.response.use(
 
         const rs = token.data.access;
 
-        axios.defaults.headers["Authorization"] = `Bearer ${rs}`;
-
+        originalConfig.headers["Authorization"] = `Bearer ${rs}`;
+        
         return axios(originalConfig);
       } catch (_error: any) {
         if (_error.response && _error.response.data) {
