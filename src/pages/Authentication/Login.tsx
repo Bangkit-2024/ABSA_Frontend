@@ -1,8 +1,7 @@
 import React from "react";
-import logoLight from 'assets/images/logo-light.png';
 import { Link, Navigate } from "react-router-dom";
 import { loginUser } from "slices/thunk";
-import img1 from "assets/images/auth/img-01.png";
+import img1 from "../../assets/images/login-picture.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { useFormik as useFormic } from "formik";
@@ -24,12 +23,10 @@ const Login = (props: any) => {
     })
   );
 
-  const {  success, error } = useSelector(selectLogin);
+  const { success, error } = useSelector(selectLogin);
 
   const validation: any = useFormic({
-    // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
-
     initialValues: {
       username: "",
       password: "",
@@ -39,15 +36,13 @@ const Login = (props: any) => {
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values: any) => {
-      dispatch(loginUser(values,props.router.navigate));
+      dispatch(loginUser(values, props.router.navigate));
     },
   });
 
   React.useEffect(() => {
     const bodyElement = document.body;
-
     bodyElement.classList.add("font-public");
-
     return () => {
       bodyElement.classList.remove("font-public");
     };
@@ -55,24 +50,26 @@ const Login = (props: any) => {
 
   return (
     <React.Fragment>
-      <div className="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
-        <div className="mb-0 border-none shadow-none xl:w-2/3 card bg-white/70 dark:bg-zink-500/70">
+      <div className="flex items-center justify-center min-h-screen px-4 py-16 dark:text-zink-100 font-public bg-gray-200">
+        <div className="mb-0 border-none shadow-none xl:w-2/3 card bg-white/100 dark:bg-zink-500/70">
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <div className="!px-12 !py-12 card-body">
+              <div className="!px-12 !py-10 card-body">
                 <div className="text-center">
-                  <h4 className="mb-2 text-purple-500 dark:text-purple-500">
-                    Welcome Back !
-                  </h4>
+                  <h4 className="mb-2 text-white-500">Welcome Back!</h4>
                   <p className="text-slate-500 dark:text-zink-200">
-                    Sign in to continue to Tailwick.
+                    Sign in to continue
                   </p>
-                  {success && <div className="px-4 py-3 mb-3 text-sm text-green-500 border border-green-200 rounded-md bg-green-50 dark:bg-green-400/20 dark:border-green-500/50" id="successAlert">
-                                You have <b>successfully</b> signed in.
-                            </div>}
-                            {error && <div className="px-4 py-3 mb-3 text-sm text-red-500 border border-red-200 rounded-md bg-red-50 dark:bg-red-400/20 dark:border-red-500/50" id="successAlert">
-                                You have <b>failed</b> signed in.
-                            </div>}
+                  {success && (
+                    <div className="px-4 py-3 mb-3 text-sm text-green-500 border border-green-200 rounded-md bg-green-50 dark:bg-green-400/20 dark:border-green-500/50" id="successAlert">
+                      You have <b>successfully</b> signed in.
+                    </div>
+                  )}
+                  {error && (
+                    <div className="px-4 py-3 mb-3 text-sm text-red-500 border border-red-200 rounded-md bg-red-50 dark:bg-red-400/20 dark:border-red-500/50" id="successAlert">
+                      You have <b>failed</b> signed in.
+                    </div>
+                  )}
                 </div>
 
                 <form
@@ -108,10 +105,7 @@ const Login = (props: any) => {
                       value={validation.values.username || ""}
                     />
                     {validation.touched.username && validation.errors.username ? (
-                      <div
-                        id="username-error"
-                        className="mt-1 text-sm text-red-500"
-                      >
+                      <div id="username-error" className="mt-1 text-sm text-red-500">
                         {validation.errors.username}
                       </div>
                     ) : null}
@@ -132,12 +126,8 @@ const Login = (props: any) => {
                       onBlur={validation.handleBlur}
                       value={validation.values.password || ""}
                     />
-                    {validation.touched.password &&
-                    validation.errors.password ? (
-                      <div
-                        id="password-error"
-                        className="mt-1 text-sm text-red-500"
-                      >
+                    {validation.touched.password && validation.errors.password ? (
+                      <div id="password-error" className="mt-1 text-sm text-red-500">
                         {validation.errors.password}
                       </div>
                     ) : null}
@@ -157,17 +147,14 @@ const Login = (props: any) => {
                         Remember me
                       </label>
                     </div>
-                    <div
-                      id="remember-error"
-                      className="hidden mt-1 text-sm text-red-500"
-                    >
+                    <div id="remember-error" className="hidden mt-1 text-sm text-red-500">
                       Please check the "Remember me" before submitting the form.
                     </div>
                   </div>
                   <div className="mt-10">
                     <button
                       type="submit"
-                      className="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"
+                      className="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20 text-xl"
                     >
                       Sign In
                     </button>
@@ -176,22 +163,10 @@ const Login = (props: any) => {
                 </form>
               </div>
             </div>
-            <div className="mx-2 mt-2 mb-2 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
-              <div className="!px-10 !pt-10 h-full !pb-0 card-body flex flex-col">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="grow">
-                    <Link to="/">
-                      <img
-                        src={logoLight}
-                        alt=""
-                        className="hidden h-6 dark:block"
-                      />
-                    </Link>
-                  </div>
-
-                </div>
-                <div className="mt-auto">
-                  <img src={img1} alt="" className="md:max-w-[32rem] mx-auto" />
+            <div className=" !pr-8 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
+              <div className=" !py-6 h-full !pb-0 card-body flex flex-col justify-center items-center">
+                <div className="flex items-center justify-center w-full h-full">
+                  <img src={img1} alt="" className="object-contain h-auto w-auto max-h-full max-w-full rounded-lg" />
                 </div>
               </div>
             </div>
