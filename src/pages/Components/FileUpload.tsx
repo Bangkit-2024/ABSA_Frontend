@@ -2,12 +2,34 @@ import React from "react";
 import BreadCrumb from "Common/BreadCrumb";
 import Dropzone from "react-dropzone"
 import { UploadCloud } from "lucide-react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 const FileUpload = () => {
 
     const [selectedFiles, setSelectedFiles] = React.useState<any>([])
 
     const handleAcceptedFiles = (files: any) => {
+
+        if (files.length > 0) {
+            toast.success("File successfully uploaded!", {
+                position: "top-right",
+                autoClose: 5000,  
+                theme: "colored",
+                icon: false,
+                closeButton: false
+
+            });
+        } else {
+            toast.error("No files uploaded, Please try again!", {
+                position: "top-right",
+                autoClose: 5000,
+                theme: "colored",
+                icon: false,
+                closeButton: false
+            });
+        }
+
         files.map((file: any) =>
             Object.assign(file, {
                 preview: URL.createObjectURL(file),
@@ -32,6 +54,7 @@ const FileUpload = () => {
 
     return (
         <React.Fragment>
+            <ToastContainer />
             <div className="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
                 <BreadCrumb title="File Upload" pageTitle="Data" />
 
