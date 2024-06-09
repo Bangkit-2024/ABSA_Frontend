@@ -1,27 +1,37 @@
 import React from "react";
 import BreadCrumb from "Common/BreadCrumb";
-import Dropzone from "react-dropzone"
+import Dropzone from "react-dropzone";
 import { UploadCloud } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 
 const FileUpload = () => {
 
-    const [selectedFiles, setSelectedFiles] = React.useState<any>([])
+    const [selectedFiles, setSelectedFiles] = React.useState<any>([]);
 
     const handleAcceptedFiles = (files: any) => {
+        const validFiles = files.filter((file: any) => file.type === "text/csv" || file.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 
-        if (files.length > 0) {
-            toast.success("File successfully uploaded!", {
+        if (validFiles.length > 0) {
+            toast.success("File(s) successfully uploaded!", {
                 position: "top-right",
-                autoClose: 5000,  
+                autoClose: 5000,
                 theme: "colored",
                 icon: false,
                 closeButton: false
-
             });
-        } else {
-            toast.error("No files uploaded, Please try again!", {
+
+            validFiles.map((file: any) =>
+                Object.assign(file, {
+                    preview: URL.createObjectURL(file),
+                    formattedSize: formatBytes(file.size),
+                })
+            );
+            setSelectedFiles([...selectedFiles, ...validFiles]);
+        }
+
+        if (files.length > validFiles.length) {
+            toast.error("Only CSV and XLSX files are allowed!", {
                 position: "top-right",
                 autoClose: 5000,
                 theme: "colored",
@@ -29,28 +39,20 @@ const FileUpload = () => {
                 closeButton: false
             });
         }
-
-        files.map((file: any) =>
-            Object.assign(file, {
-                preview: URL.createObjectURL(file),
-                formattedSize: formatBytes(file.size),
-            })
-        )
-        setSelectedFiles(files)
-    }
+    };
 
     /**
      * Formats the size
      */
     const formatBytes = (bytes: any, decimals = 2) => {
-        if (bytes === 0) return "0 Bytes"
-        const k = 1024
-        const dm = decimals < 0 ? 0 : decimals
-        const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
+        if (bytes === 0) return "0 Bytes";
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
-        const i = Math.floor(Math.log(bytes) / Math.log(k))
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i]
-    }
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    };
 
     return (
         <React.Fragment>
@@ -65,7 +67,7 @@ const FileUpload = () => {
 
                             <Dropzone
                                 onDrop={(acceptedFiles: any) => {
-                                    handleAcceptedFiles(acceptedFiles)
+                                    handleAcceptedFiles(acceptedFiles);
                                 }}
                             >
                                 {({ getRootProps, getInputProps }: any) => (
@@ -86,7 +88,7 @@ const FileUpload = () => {
 
                         <ul className="mb-0" id="dropzone-preview">
                             {
-                                (selectedFiles || [])?.map((f: any, i: any) => {
+                                (selectedFiles || []).map((f: any, i: any) => {
                                     return (
                                         <li className="mt-2" id="dropzone-preview-list" key={i + "-file"}>
                                             <div className="border rounded border-slate-200 dark:border-zink-500">
@@ -115,7 +117,7 @@ const FileUpload = () => {
                                                 </div>
                                             </div>
                                         </li>
-                                    )
+                                    );
                                 })
                             }
                         </ul>
