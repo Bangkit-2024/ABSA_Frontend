@@ -16,13 +16,13 @@ const OverviewTabs = () => {
                 <div className="2xl:col-span-12">
                     <div className="grid grid-cols-1 gap-x-5 xl:grid-cols-12">
                     </div>
-                    <div className="card">
+                    {/* <div className="card">
                         <div className="card-body">
                             <h6 className="mb-3 text-15">About Me</h6>
                             <p className="mb-2 text-slate-500 dark:text-zink-200">A Web Developer creates and designs different websites for clients. They are responsible for their aesthetic as well as their function. Professionals in this field may also need to be able to ensure sites are compatible with multiple types of media. Web Developers need to have a firm understanding of programming and graphical design. Having a strong resume that emphasizes these attributes makes it significantly easier to get hired as a Web Developer.</p>
                             <p className="text-slate-500 dark:text-zink-200">As a web designer, my objective is to make a positive impact on clients, co-workers, and the Internet using my skills and experience to design compelling and attractive websites. Solving code problems. Editing & Design with designing team in the company to build perfect web designs.</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="2xl:col-span-12">
                     <div className="card">
