@@ -151,6 +151,11 @@ const Login = (props: any) => {
                       Please check the "Remember me" before submitting the form.
                     </div>
                   </div>
+                  <div className="mt-2 flex justify-end">
+                    <Link to="/auth-reset-password" className="text-blue-500 hover:underline">
+                      Forgot Password?
+                    </Link>
+                  </div>
                   <div className="mt-10">
                     <button
                       type="submit"
