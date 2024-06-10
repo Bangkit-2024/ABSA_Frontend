@@ -1,78 +1,56 @@
 import {dataReview, dataAspectReview} from 'helpers/api_data_models'
 import { parseCSV, parseExcel } from 'helpers/processdata/parser';
 
-export function generateSeries(data : dataReview[]) {
+export function generateSeries(data: dataReview[]) {
     interface absaInnerCount {
-        "Positif":number,
-        "Negatif":number,
-        "Netral":number
-    }
-    interface absaCount {
-        "Rasa": absaInnerCount,
-        "Menu": absaInnerCount,
-        "Tempat": absaInnerCount,
-        "Harga": absaInnerCount,
-        "Pelayanan": absaInnerCount
-        [key: string]: absaInnerCount;
+        "Positif": number,
+        "Negatif": number,
+        "Netral": number
     }
 
-    const aspectSentimentCount : absaCount = {
-        "Rasa": { "Positif": 0, "Negatif": 0, "Netral": 0 },
-        "Menu": { "Positif": 0, "Negatif": 0, "Netral": 0 },
-        "Tempat": { "Positif": 0, "Negatif": 0, "Netral": 0 },
-        "Harga": { "Positif": 0, "Negatif": 0, "Netral": 0 },
-        "Pelayanan": { "Positif": 0, "Negatif": 0, "Netral": 0 }
-    };
+    // Use a Map to store dynamic aspects with their sentiment counts
+    const aspectSentimentCount: Map<string, absaInnerCount> = new Map();
 
-    data.forEach((review : dataReview) => {
-        review.review_aspect!.forEach((aspect : dataAspectReview) => {
+    data.forEach((review: dataReview) => {
+        review.review_aspect!.forEach((aspect: dataAspectReview) => {
+            if (!aspectSentimentCount.has(aspect.aspect)) {
+                aspectSentimentCount.set(aspect.aspect, { "Positif": 0, "Negatif": 0, "Netral": 0 });
+            }
+            const sentimentCount = aspectSentimentCount.get(aspect.aspect)!;
             switch (aspect.sentiment) {
                 case 1:
-                    aspectSentimentCount[aspect.aspect]["Positif"]++;
+                    sentimentCount["Positif"]++;
                     break;
                 case -1:
-                    aspectSentimentCount[aspect.aspect]["Negatif"]++;
+                    sentimentCount["Negatif"]++;
                     break;
                 case 0:
-                    aspectSentimentCount[aspect.aspect]["Netral"]++;
+                    sentimentCount["Netral"]++;
                     break;
                 default:
+                    console.warn(`Unexpected sentiment: ${aspect.sentiment}`);
                     break;
             }
         });
     });
 
-    const series = [{
-        name: 'Positif',
-        data: [
-            aspectSentimentCount["Rasa"]["Positif"],
-            aspectSentimentCount["Menu"]["Positif"],
-            aspectSentimentCount["Tempat"]["Positif"],
-            aspectSentimentCount["Harga"]["Positif"],
-            aspectSentimentCount["Pelayanan"]["Positif"]
-        ]
-    }, {
-        name: 'Negatif',
-        data: [
-            aspectSentimentCount["Rasa"]["Negatif"],
-            aspectSentimentCount["Menu"]["Negatif"],
-            aspectSentimentCount["Tempat"]["Negatif"],
-            aspectSentimentCount["Harga"]["Negatif"],
-            aspectSentimentCount["Pelayanan"]["Negatif"]
-        ]
-    }, {
-        name: 'Netral',
-        data: [
-            aspectSentimentCount["Rasa"]["Netral"],
-            aspectSentimentCount["Menu"]["Netral"],
-            aspectSentimentCount["Tempat"]["Netral"],
-            aspectSentimentCount["Harga"]["Netral"],
-            aspectSentimentCount["Pelayanan"]["Netral"]
-        ]
-    }];
+    // Build the series data dynamically
+    const series = [
+        { name: 'Positif', data: [] as number[] },
+        { name: 'Negatif', data: [] as number[] },
+        { name: 'Netral', data: [] as number[] }
+    ];
+
+    // Iterate over the aspects and populate the series data
+    aspectSentimentCount.forEach((counts, aspect) => {
+        series[0].data.push(counts["Positif"]);
+        series[1].data.push(counts["Negatif"]);
+        series[2].data.push(counts["Netral"]);
+    });
 
     return series;
 }
+
 
 
 export function generateWordCloud(data:dataReview[]){
@@ -127,51 +105,32 @@ export function countSentiment(data:dataReview[]) {
     return [totalPositif, totalNegatif, totalNetral];
 }
 
-export function countAspects(data:dataReview[]) {
 
-    const aspectCount = [
-        // Rasa
-        0,
-        // Menu
-        0,
-        // Tempat
-        0,
-        // Harga
-        0,
-        // Pelayanan
-        0
-    ];
-
-    data.forEach((review:dataReview) => {
-        review!.review_aspect!.forEach(aspect => {
-            switch (aspect.aspect) {
-                case 'Rasa':
-                    aspectCount[0]++;
-                    break;
-                case 'Menu':
-                    aspectCount[1]++;
-                    break;
-                case 'Tempat':
-                    aspectCount[2]++;
-                    break;
-                case 'Harga':
-                    aspectCount[3]++;
-                    break;
-                case 'Pelayanan':
-                    aspectCount[4]++;
-                    break;
-                default:
-                    console.warn(`Unexpected aspect: ${aspect.aspect}`);
+export function countAspects(data: dataReview[], aspect_list: string[]): number[] {
+    // Initialize aspect counts based on the provided fields
+    const fields = aspect_list.map(aspect=>aspect.toLowerCase())
+    const aspectCount: number[] = new Array(fields.length).fill(0);
+    
+    // Count occurrences of each aspect
+    data.forEach((review: dataReview) => {
+        review.review_aspect?.forEach((aspect: dataAspectReview) => {
+            const index = fields.indexOf(aspect.aspect);
+            if (index !== -1) {
+                aspectCount[index]++;
+            } else {
+                // console.warn(`Unexpected aspect: ${aspect.aspect}`);
             }
         });
     });
 
-    const totalAspectCount = {
-        "Total": aspectCount.reduce((acc, curr) => acc + curr, 0)
-    };
+    // Calculate the total count
+    const totalAspectCount = aspectCount.reduce((acc, curr) => acc + curr, 0);
 
-    return [...aspectCount, totalAspectCount["Total"]];
+    // Return the counts with the total as the last element
+    return [...aspectCount, totalAspectCount];
 }
+
+
 
 export async function processFile(file:File)  {
         switch (file.type) {
@@ -182,4 +141,19 @@ export async function processFile(file:File)  {
         default:
             throw TypeError("Tipe File Tidak Sesuai")
     }
+}
+
+export function hashWord(text:string, seed=0){
+    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    for(let i = 0, ch; i < text.length; i++) {
+        ch = text.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1  = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
+    h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2  = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
+    h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  
+    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 }
