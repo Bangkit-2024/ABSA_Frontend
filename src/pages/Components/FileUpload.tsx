@@ -1,6 +1,6 @@
 import React from "react";
 import BreadCrumb from "Common/BreadCrumb";
-import Dropzone from "react-dropzone"
+import Dropzone from "react-dropzone";
 import { UploadCloud } from "lucide-react";
 import SimpleTable from "Common/Components/Table/Table";
 import { processFile } from "helpers/processdata/process";
@@ -58,17 +58,18 @@ const FileUpload = () => {
      * Formats the size
      */
     const formatBytes = (bytes: any, decimals = 2) => {
-        if (bytes === 0) return "0 Bytes"
-        const k = 1024
-        const dm = decimals < 0 ? 0 : decimals
-        const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
+        if (bytes === 0) return "0 Bytes";
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
-        const i = Math.floor(Math.log(bytes) / Math.log(k))
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i]
-    }
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    };
 
     return (
         <React.Fragment>
+            <ToastContainer />
             <div className="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
                 <BreadCrumb title="File Upload" pageTitle="Data" />
 
@@ -112,7 +113,7 @@ const FileUpload = () => {
 
                         <ul className="mb-0" id="dropzone-preview">
                             {
-                                (selectedFiles || [])?.map((f: any, i: any) => {
+                                (selectedFiles || []).map((f: any, i: any) => {
                                     return (
                                         <li className="mt-2" id="dropzone-preview-list" key={i + "-file"}>
                                             <div className="border rounded border-slate-200 dark:border-zink-500">
@@ -141,7 +142,7 @@ const FileUpload = () => {
                                                 </div>
                                             </div>
                                         </li>
-                                    )
+                                    );
                                 })
                             }
                         </ul>

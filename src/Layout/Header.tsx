@@ -13,7 +13,7 @@ import userProfile from "assets/images/users/user-profile.png";
 //import components
 import { Dropdown } from 'Common/Components/Dropdown';
 import LanguageDropdown from 'Common/LanguageDropdown';
-import NotificationDropdown from 'Common/NotificationDropdown';
+// import NotificationDropdown from 'Common/NotificationDropdown';
 import { changeLeftsidebarSizeType } from 'slices/thunk';
 
 const Header = ({ handleToggleDrawer, handleDrawer }: any) => {
@@ -164,7 +164,7 @@ const Header = ({ handleToggleDrawer, handleDrawer }: any) => {
                                 <LanguageDropdown />
 
                                 {/* NotificationDropdown */}
-                                <NotificationDropdown />
+                                {/* <NotificationDropdown /> */}
 
 
                                 <Dropdown className="relative flex items-center h-header">
@@ -174,7 +174,7 @@ const Header = ({ handleToggleDrawer, handleDrawer }: any) => {
                                         </div>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content placement="right-end" className="absolute z-50 p-4 ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[14rem] dark:bg-zink-600" aria-labelledby="dropdownMenuButton">
-                                        <h6 className="mb-2 text-sm font-normal text-slate-500 dark:text-zink-300">Welcome to Tailwick</h6>
+                                        {/* <h6 className="mb-2 text-sm font-normal text-slate-500 dark:text-zink-300">Welcome to Tailwick</h6> */}
                                         <a href="#!" className="flex gap-3 mb-3">
                                             <div className="relative inline-block shrink-0">
                                                 <div className="rounded bg-slate-100 dark:bg-zink-500">
@@ -188,9 +188,9 @@ const Header = ({ handleToggleDrawer, handleDrawer }: any) => {
                                             </div>
                                         </a>
                                         <ul>
-                                            <li>
+                                            {/* <li>
                                                 <a className="block ltr:pr-4 rtl:pl-4 py-1.5 text-base font-medium transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:text-custom-500 focus:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:focus:text-custom-500" href={process.env.PUBLIC_URL + "/user-profile"}><User2 className="inline-block size-4 ltr:mr-2 rtl:ml-2"></User2> Profile</a>
-                                            </li>
+                                            </li> */}
                                             <li className="pt-2 mt-2 border-t border-slate-200 dark:border-zink-500">
                                                 <a className="block ltr:pr-4 rtl:pl-4 py-1.5 text-base font-medium transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:text-custom-500 focus:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:focus:text-custom-500" href={process.env.PUBLIC_URL + "/logout"}><LogOut className="inline-block size-4 ltr:mr-2 rtl:ml-2"></LogOut> Sign Out</a>
                                             </li>
