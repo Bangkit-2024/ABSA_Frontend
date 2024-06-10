@@ -1,4 +1,5 @@
 import {dataReview, dataAspectReview} from 'helpers/api_data_models'
+import { parseCSV, parseExcel } from 'helpers/processdata/parser';
 
 export function generateSeries(data : dataReview[]) {
     interface absaInnerCount {
@@ -170,4 +171,15 @@ export function countAspects(data:dataReview[]) {
     };
 
     return [...aspectCount, totalAspectCount["Total"]];
+}
+
+export async function processFile(file:File)  {
+        switch (file.type) {
+        case ('text/csv'):  
+            return await parseCSV(file)
+        case ('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'):            
+            return await parseExcel(file)        
+        default:
+            throw TypeError("Tipe File Tidak Sesuai")
+    }
 }

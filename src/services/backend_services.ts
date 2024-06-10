@@ -13,3 +13,5 @@ export const getReviewDetail = (id :string) => api.get(`${url.API_URL_REVIEW}${i
 export const postReview = (review : model.dataReview) => api.post(url.API_URL_REVIEW,review).then(r=>r.data)
 export const deleteReview = (id :string) => api.delete(`${url.API_URL_REVIEW}${id}/`).then(r=>r.data)
 export const predictReview = (text : string) => api.post(url.API_URL_REVIEW_PREDICT,{text:text}).then(r=>r.data) 
+
+export const uploadReviewData = (file:File)=> api.post(url.API_URL_REVIEW_UPLOAD,{review_file:file},{"headers":{ "Content-Type": "multipart/form-data" }}).then(r=>r.data)

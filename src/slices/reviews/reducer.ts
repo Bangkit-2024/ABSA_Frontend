@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as model from 'helpers/api_data_models'
 import {
-    addReview,
     getReview,
     listReview,
-    removeReview
+    removeReview,
+    uploadReviewThunk
 } from "./thunk"
 
 interface ReviewState {
@@ -22,6 +22,14 @@ const loginSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers:(builder)=>{
+        builder.addCase(uploadReviewThunk.fulfilled,(state,action:any)=>{
+            state.reviews.push(action.payload);
+        })
+
+        builder.addCase(uploadReviewThunk.rejected,(state,action:any)=>{
+            state.error = action.payload.error || null;
+        })
+
         builder.addCase(listReview.fulfilled,(state , action : any)=>{
             state.reviews = action.payload
         })
