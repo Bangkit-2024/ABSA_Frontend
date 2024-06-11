@@ -17,7 +17,7 @@ const Dashboard = () => {
       <div className="mt-5 md:flex md:gap-3">
         <div className="basis-5/12">
           <div className="bg-white shadow-sm w-full">
-            <AspectBasedStats />
+            {/* <AspectBasedStats /> */}
             <AspectBasedList />
           </div>
         </div>

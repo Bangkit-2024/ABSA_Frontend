@@ -69,7 +69,6 @@ const FileUpload = () => {
 
     return (
         <React.Fragment>
-            <ToastContainer />
             <div className="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
                 <BreadCrumb title="File Upload" pageTitle="Data" />
 

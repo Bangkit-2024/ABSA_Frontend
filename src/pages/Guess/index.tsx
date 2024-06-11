@@ -8,8 +8,11 @@ export default function GuessApp() {
   const [Result, setResult] = useState("")
   const [AbsaResult, setAbsaResult] = useState([])
   const mutation = useMutation(predictReview,{
-    onSuccess : (data)=>{      
-      setAbsaResult(data)
+    onSuccess : (data)=>{    
+      setAbsaResult(data?.absa)
+    },
+    onError : (error)=>{
+      console.log(error)
     },
     retry:1,
   });
@@ -85,17 +88,17 @@ export default function GuessApp() {
             <div className="mb-4 text-center">{Result}</div>
             <div>
             {AbsaResult.map(
-                ({span,polarity},i)=>{
+                ({aspect,sentiment},i)=>{
                     let color = "slate"
                     let stment = "N"
-                    if(polarity==="positif"){
+                    if(sentiment==="positif"){
                         color="green"
                         stment = "+"
-                    }else if(polarity==="negatif"){
+                    }else if(sentiment==="negatif"){
                         color="red"
                         stment = "-"
                     }
-                    return <span key={i} className={`me-2 px-2.5 py-0.5 inline-block text-[0.75rem] font-medium rounded border bg-${color}-100 border-transparent text-${color}-500 dark:bg-${color}-500/20 dark:border-transparent`}>{span} ({stment})</span>
+                    return <span key={i} className={`me-2 px-2.5 py-0.5 inline-block text-[0.75rem] font-medium rounded border bg-${color}-100 border-transparent text-${color}-500 dark:bg-${color}-500/20 dark:border-transparent`}>{aspect} ({stment})</span>
                 }
             )}
             </div>
