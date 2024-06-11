@@ -20,10 +20,11 @@ export const listReview = createAsyncThunk("review/list", async (_,thunkAPI) => 
 export const uploadReviewThunk = createAsyncThunk("review/upload", async (file:any,thunkAPI)=>{
     try{
         const response = await uploadReviewData(file)
+        thunkAPI.dispatch(listReview())
         return response
         
-    }catch(error){
-        return thunkAPI.rejectWithValue("Terjadi Kesalahan")
+    }catch(error :any){        
+        return thunkAPI.rejectWithValue(error.response.data || error.toString())
     }
 })
 

@@ -27,17 +27,17 @@ const loginSlice = createSlice({
         })
 
         builder.addCase(uploadReviewThunk.rejected,(state,action:any)=>{
-            state.error = action.payload.error || null;
+            state.error = action.payload || null;
         })
 
         builder.addCase(listReview.fulfilled,(state , action : any)=>{
             state.reviews = action.payload
         })
         builder.addCase(listReview.rejected, (state, action: any) => {
-            state.error = action.payload.error || null;
+            state.error = action.payload || null;
         });
         builder.addCase(getReview.rejected, (state, action: any) => {
-            state.error = action.payload.error || null;
+            state.error = action.payload || null;
         });
         builder.addCase(removeReview.fulfilled, (state, action: any) => {
             state.reviews = state.reviews.filter(
@@ -45,7 +45,7 @@ const loginSlice = createSlice({
             );
         });
         builder.addCase(removeReview.rejected, (state, action: any) => {
-            state.error = action.payload.error || null;
+            state.error = action.payload || null;
         });
     }
 });
