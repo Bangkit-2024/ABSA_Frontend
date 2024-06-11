@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL   = process.env.REACT_APP_APIURL;
+const API_URL   = `${process.env.REACT_APP_BACKEND_URL}/api/v1/`
 
 const AUTH_LOGIN  = API_URL+"auth/"
 

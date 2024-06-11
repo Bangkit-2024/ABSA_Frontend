@@ -2,7 +2,7 @@ import api from "axios";
 import { apiRefresh } from "services/auth";
 
 const axios = api.create({
-  baseURL: process.env.REACT_APP_APIURL,
+  baseURL: `${process.env.REACT_APP_BACKEND_URL}/api/v1/`,
 });
 
 const getLoggedUser = () => {
