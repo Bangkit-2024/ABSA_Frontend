@@ -48,21 +48,51 @@ function processFile(file_masuk) {
         }
         
         if (!rowHasEmptyColumn) {
-            data.push(row);
+            const rowData = {};
+            for (let j = 0; j < header.length; j++) {
+                rowData[header[j]] = row[j];
+            }
+            data.push(rowData);
         }
     }
     
-    const contoh_output = {
-        header: header,
-        data: data
-    };
-    
-    return contoh_output;
+    return data;
+}
+
+function analyzeData(data) {
+    const aspectCounts = {};
+    const sentimentCounts = {};
+
+    data.forEach(row => {
+        console.log('Processing row:', row); // Print each row to debug
+        Object.entries(row).forEach(([key, value]) => {
+            if (!aspectCounts[key]) {
+                aspectCounts[key] = 0;
+            }
+            aspectCounts[key]++;
+            
+            if (!sentimentCounts[key]) {
+                sentimentCounts[key] = { positive: 0, negative: 0, neutral: 0 };
+            }
+            
+            const sentiment = value.toLowerCase().trim();
+            if (sentiment === 'positive') {
+                sentimentCounts[key].positive++;
+            } else if (sentiment === 'negative') {
+                sentimentCounts[key].negative++;
+            } else if (sentiment === 'neutral') {
+                sentimentCounts[key].neutral++;
+            }
+        });
+    });
+
+    return { aspectCounts, sentimentCounts };
 }
 
 try {
-    const result = processFile('./dataset_rasa_makanan_1000.csv');
-    console.log(result);
+    const data = processFile('./dataset_rasa_makanan_1000.csv');
+    const analysisResult = analyzeData(data);
+    console.log(analysisResult);
 } catch (error) {
     console.error(error.message);
 }
