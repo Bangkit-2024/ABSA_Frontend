@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChangePasswordTabs = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<Record<string, boolean>>({});
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const togglePasswordVisibility = (inputId: string) => {
         setPasswordVisibility(prevState => ({
@@ -13,6 +16,42 @@ const ChangePasswordTabs = () => {
     };
 
     const handleChangePassword = () => {
+        const admin = "admin";
+    
+        if (oldPassword !== admin) {
+            toast.error("Old password is incorrect.", {
+                position: "top-right",
+                autoClose: 5000,
+                theme: "colored",
+                icon: false,
+                closeButton: false
+            });
+            return; // Stop further execution
+        }
+    
+        if (!newPassword || !confirmPassword) {
+            toast.error("Please fill in all fields.", {
+                position: "top-right",
+                autoClose: 5000,
+                theme: "colored",
+                icon: false,
+                closeButton: false
+            });
+            return; // Stop further execution
+        }
+    
+        if (newPassword !== confirmPassword) {
+            toast.error("New password and confirm password don't match.", {
+                position: "top-right",
+                autoClose: 5000,
+                theme: "colored",
+                icon: false,
+                closeButton: false
+            });
+            return; // Stop further execution
+        }
+    
+        // Your existing success notification code
         toast.success("Password changed successfully!", {
             position: "top-right",
             autoClose: 5000,
@@ -32,12 +71,14 @@ const ChangePasswordTabs = () => {
                             <div className="xl:col-span-4">
                                 <label htmlFor="inputValueOld" className="inline-block mb-2 text-base font-medium">Old Password*</label>
                                 <div className="relative">
-                                    <input 
-                                        type={passwordVisibility["oldpasswordInput2"] ? "text" : "password"} 
-                                        className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" 
-                                        id="oldpasswordInput2" 
-                                        placeholder="Enter current password" 
-                                    />
+                                <input 
+                                    type={passwordVisibility["oldpasswordInput2"] ? "text" : "password"} 
+                                    className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" 
+                                    id="oldpasswordInput2" 
+                                    placeholder="Enter current password"
+                                    value={oldPassword} // Mengaitkan nilai old password dengan state oldPassword
+                                    onChange={(e) => setOldPassword(e.target.value)} // Memperbarui nilai oldPassword saat input berubah
+                                />
                                     <button 
                                         className="absolute top-2 ltr:right-4 rtl:left-4" 
                                         type="button" 
@@ -55,6 +96,8 @@ const ChangePasswordTabs = () => {
                                         className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" 
                                         id="NewpasswordInput" 
                                         placeholder="Enter new password" 
+                                        value={newPassword} // <- Gunakan nilai newPassword di sini
+                                        onChange={(e) => setNewPassword(e.target.value)} // <- Perbarui nilai newPassword saat input berubah
                                     />
                                     <button 
                                         className="absolute top-2 ltr:right-4 rtl:left-4" 
@@ -73,6 +116,8 @@ const ChangePasswordTabs = () => {
                                         className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" 
                                         id="ConfirmpasswordInput" 
                                         placeholder="Confirm password" 
+                                        value={confirmPassword} // <- Gunakan nilai confirmPassword di sini
+                                        onChange={(e) => setConfirmPassword(e.target.value)} // <- Perbarui nilai confirmPassword saat input berubah
                                     />
                                     <button 
                                         className="absolute top-2 ltr:right-4 rtl:left-4" 
@@ -96,7 +141,6 @@ const ChangePasswordTabs = () => {
                     </form>
                 </div>
             </div>
-            <ToastContainer /> {/* Container untuk menampilkan notifikasi */}
         </React.Fragment>
     );
 }

@@ -4,10 +4,13 @@ import AccountInfo from "../UserInfo/AccountInfo";
 import { Nav } from "Common/Components/Tab/Nav";
 import Tab from "Common/Components/Tab/Tab";
 import PersonalTabs from "./PersonalTabs";
+import ChangePasswordTabs from "./ChangePasswordTabs";
+import { ToastContainer } from "react-toastify";
 
 const userSetting = () => {
     return (
         <React.Fragment>
+            <ToastContainer />
             <BreadCrumb title='Settings' pageTitle='User' />
             <Tab.Container defaultActiveKey="personalTabs">
                 <div className="card">

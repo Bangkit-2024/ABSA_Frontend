@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import BreadCrumb from "Common/BreadCrumb";
 import Dropzone from "react-dropzone";
 import { UploadCloud } from "lucide-react";
+<<<<<<< HEAD
 import SimpleTable from "Common/Components/Table/Table";
 import { processFile } from "helpers/processdata/process";
 import withReactContent from 'sweetalert2-react-content'
@@ -29,6 +30,17 @@ const FileUpload = () => {
         )
         setSelectedFiles(files)
     }
+=======
+import { ToastContainer, toast } from "react-toastify";
+import Modal from "Common/Components/Modal";
+import "react-toastify/dist/ReactToastify.css";
+
+const FileUpload: React.FC = () => {
+    const [defaultModal, setDefaultModal] = useState<boolean>(false);
+    const defaultToggle = () => setDefaultModal(!defaultModal);
+
+    const [selectedFiles, setSelectedFiles] = useState<any[]>([]);
+>>>>>>> origin/fajri-FE
 
     const handleVerifyUpload = async ()=>{
         withReactContent(Swal).fire({
@@ -51,12 +63,24 @@ const FileUpload = () => {
         }else{
             setParsedFile(defaultParsed)
         }
+<<<<<<< HEAD
     }, [selectedFiles])
     
+=======
 
-    /**
-     * Formats the size
-     */
+        if (files.length > validFiles.length) {
+            toast.error("Only CSV and XLSX files are allowed!", {
+                position: "top-right",
+                autoClose: 5000,
+                theme: "colored",
+                icon: false,
+                closeButton: false
+            });
+            setDefaultModal(true);
+        }
+    };
+>>>>>>> origin/fajri-FE
+
     const formatBytes = (bytes: any, decimals = 2) => {
         if (bytes === 0) return "0 Bytes";
         const k = 1024;
@@ -69,12 +93,44 @@ const FileUpload = () => {
 
     return (
         <React.Fragment>
+<<<<<<< HEAD
+=======
+            <ToastContainer />
+
+            <Modal show={defaultModal} onHide={defaultToggle} id="defaultModal" modal-center="true"
+                className="fixed flex flex-col transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4"
+                dialogClassName="w-screen md:w-[30rem] bg-white shadow rounded-md dark:bg-zink-600 flex flex-col h-full">
+                <Modal.Header className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-zink-500"
+                    closeButtonClass="transition-all duration-200 ease-linear text-slate-500 hover:text-red-500 dark:text-zink-200 dark:hover:text-red-500">
+                    <Modal.Title className="text-16">Upload Guidelines</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
+                    <h5 className="mb-3 text-16">Please follow these guidelines for file uploads:</h5>
+                    <p className="text-slate-500 dark:text-zink-200">
+                        Only CSV and XLSX files are allowed.
+                    </p>
+                    <p className="text-slate-500 dark:text-zink-200">
+                        Ensure your file contains only the following columns:
+                    </p>
+                    <ul className="list-disc list-inside text-slate-500 dark:text-zink-200">
+                        <li>Aspect</li>
+                        <li>Sentiment</li>
+                        <li>Review</li>
+                    </ul>
+                </Modal.Body>
+                <Modal.Footer className="flex items-center justify-end p-4 mt-auto border-t border-slate-200 dark:border-zink-500">
+                    <button onClick={defaultToggle} className="btn btn-primary">Close</button>
+                </Modal.Footer>
+            </Modal>
+
+>>>>>>> origin/fajri-FE
             <div className="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
                 <BreadCrumb title="File Upload" pageTitle="Data" />
 
                 <div className="card">
                     <div className="card-body">
                         <h6 className="mb-4 text-15">Dropzone</h6>
+<<<<<<< HEAD
                         {selectedFiles.length  <=0 ? 
                                                 <div className="flex items-center justify-center border rounded-md cursor-pointer bg-slate-100 dropzone border-slate-200 dark:bg-zink-600 dark:border-zink-500 dz-clickable">
 
@@ -138,12 +194,57 @@ const FileUpload = () => {
                                                             }}
                                                         >Delete</button>
                                                     </div>
+=======
+                        <div className="flex items-center justify-center border rounded-md cursor-pointer bg-slate-100 dropzone border-slate-200 dark:bg-zink-600 dark:border-zink-500 dz-clickable">
+                            <Dropzone
+                                onDrop={(acceptedFiles: any) => handleAcceptedFiles(acceptedFiles)}
+                            >
+                                {({ getRootProps, getInputProps }) => (
+                                    <div
+                                        className="w-full py-5 text-lg text-center dz-message needsclick"
+                                        {...getRootProps()}
+                                    >
+                                        <input {...getInputProps()} />
+                                        <div className="mb-3">
+                                            <UploadCloud className="block size-12 mx-auto text-slate-500 fill-slate-200 dark:text-zink-200 dark:fill-zink-500"></UploadCloud>
+                                        </div>
+                                        <h5 className="mb-0 font-normal text-slate-500 text-15">Drag and drop your files or <a href="#!">browse</a> your files</h5>
+                                    </div>
+                                )}
+                            </Dropzone>
+                        </div>
+
+                        <ul className="mb-0" id="dropzone-preview">
+                            {(selectedFiles || []).map((f: any, i: any) => (
+                                <li className="mt-2" id="dropzone-preview-list" key={i + "-file"}>
+                                    <div className="border rounded border-slate-200 dark:border-zink-500">
+                                        <div className="flex p-2">
+                                            <div className="shrink-0 me-3">
+                                                <div className="p-2 rounded-md size-14 bg-slate-100 dark:bg-zink-600">
+                                                    <img data-dz-thumbnail className="block w-full h-full rounded-md" src={f.preview} alt={f.name} />
+>>>>>>> origin/fajri-FE
                                                 </div>
                                             </div>
-                                        </li>
-                                    );
-                                })
-                            }
+                                            <div className="grow">
+                                                <div className="pt-1">
+                                                    <h5 className="mb-1 text-15" data-dz-name>{f.name}</h5>
+                                                    <p className="mb-0 text-slate-500 dark:text-zink-200" data-dz-size>{f.formattedSize}</p>
+                                                </div>
+                                            </div>
+                                            <div className="shrink-0 ms-3">
+                                                <button data-dz-remove
+                                                    className="px-2 py-1.5 text-xs text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20"
+                                                    onClick={() => {
+                                                        const newImages = [...selectedFiles];
+                                                        newImages.splice(i, 1);
+                                                        setSelectedFiles(newImages);
+                                                    }}
+                                                >Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
                         </ul>
                         {selectedFiles.length  >0 ? (<button className="w-full mt-3 bg-blue-400 text-white px-3 py-2 rounded-md" onClick={handleVerifyUpload}>Submit File</button>):<></>}
                     </div>
