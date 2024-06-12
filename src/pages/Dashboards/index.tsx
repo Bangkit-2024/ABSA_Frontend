@@ -1,5 +1,5 @@
 import { BasicBarChart } from "pages/Dashboards/BasicBarChart";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SimplePie from "./BasicPieCharts";
 import { StackedBarChart } from "./StackedBarChart";
@@ -12,13 +12,17 @@ const Dashboard = () => {
   const navigate = useNavigate();
   useEffect(() => navigate("/dashboard"), [navigate]);
 
+  const [Search, setSearch] = useState<string>("")
+  const [FilterAspect, setFilterAspect] = useState<string|null>(null)
+  const [FilterSentiment, setFilterSentiment] = useState<number|null>(null)
+
   return (
     <React.Fragment>
       <div className="mt-5 md:flex md:gap-3">
         <div className="basis-5/12">
           <div className="bg-white shadow-sm w-full">
-            {/* <AspectBasedStats /> */}
-            <AspectBasedList />
+            <AspectBasedStats handleSearch={setSearch} handleFilterAspect={setFilterAspect} handleFilterSentiment={setFilterSentiment} />
+            <AspectBasedList searchKey={Search} filterSentiment={FilterSentiment} filterAspect={FilterAspect} />
           </div>
         </div>
         <div className="md:basis-7/12 md:grid md:grid-cols-2 md:gap-2">

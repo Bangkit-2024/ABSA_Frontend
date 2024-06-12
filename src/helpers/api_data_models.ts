@@ -8,7 +8,10 @@ export interface dataReview {
     id?:string,
     review_text: string,
     company?: string
-    review_aspect?: dataAspectReview[]
+    review_aspect?: dataAspectReview[],
+    real_review_aspect?: dataAspectReview[],
+    is_predict_fail?:boolean
+
 }
 
 export interface UserProfile{

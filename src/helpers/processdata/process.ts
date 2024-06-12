@@ -130,6 +130,58 @@ export function countAspects(data: dataReview[], aspect_list: string[]): number[
     return [...aspectCount, totalAspectCount];
 }
 
+export function filterReviews(
+    data: dataReview[],
+    keywordSearch: string | null,
+    keywordAspect: string | null,
+    sentiment: number 
+): dataReview[] {
+    return data.filter(review => {
+        let matchesKeyword = true;
+        let matchesAspect = true;
+        let matchesSentiment = true;
+
+        // Filter by keyword search
+        if (keywordSearch) {
+            matchesKeyword = review.review_text.toLowerCase().includes(keywordSearch.toLowerCase());
+        }
+
+        // Helper function to check aspects
+        const checkAspects = (aspects: dataAspectReview[]) => {
+            return aspects.some(aspect => {
+                let aspectMatch = true;
+                let sentimentMatch = true;
+
+                if (keywordAspect) {
+                    aspectMatch = aspect.aspect.toLowerCase() === keywordAspect.toLowerCase();
+                }
+
+                if (sentiment) {
+                    sentimentMatch = aspect.sentiment === sentiment
+                }
+
+                return aspectMatch && sentimentMatch;
+            });
+        };
+
+        // Filter by aspect and sentiment
+        if (keywordAspect || sentiment) {
+            if (review!.real_review_aspect!.length > 0) {
+                matchesAspect = checkAspects(review!.real_review_aspect!);
+            } else {
+                matchesAspect = checkAspects(review!.review_aspect!);
+            }
+
+            if (review!.real_review_aspect!.length > 0) {
+                matchesSentiment = checkAspects(review!.real_review_aspect!);
+            } else {
+                matchesSentiment = checkAspects(review!.review_aspect!);
+            }
+        }
+
+        return matchesKeyword && matchesAspect && matchesSentiment;
+    });
+}
 
 
 export async function processFile(file:File)  {
@@ -156,4 +208,57 @@ export function hashWord(text:string, seed=0){
     h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
   
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+}
+
+export function getSentimentRatio(data: dataReview[]): number {
+    let positiveCount = 0;
+    let negativeCount = 0;
+
+    data.forEach(review => {
+        const aspects = review?.real_review_aspect!.length > 0 ? review.real_review_aspect : review.review_aspect;
+        
+        aspects!.forEach(aspect => {
+            if (aspect.sentiment === 1) {
+                positiveCount++;
+            } else if (aspect.sentiment === -1) {
+                negativeCount++;
+            }
+        });
+    });
+
+    const ratio = negativeCount === 0 ? positiveCount : positiveCount / negativeCount;
+
+    return ratio;
+}
+
+export function calculateNPS(data: dataReview[]): number {
+    let promoterCount = 0;
+    let detractorCount = 0;
+    let totalReviews = 0;
+
+    data.forEach(review => {
+        const aspects = review!.real_review_aspect!.length > 0 ? review?.real_review_aspect! : review.review_aspect;
+
+        aspects?.forEach(aspect => {
+            totalReviews++;
+            const sentiment = aspect.sentiment;
+
+            if (sentiment === 1) {
+                promoterCount++;
+            } else if (sentiment === -1) {
+                detractorCount++;
+            }
+            // Neutral sentiments are considered passive and not counted in NPS
+        });
+    });
+
+    if (totalReviews === 0) {
+        return 0;
+    }
+
+    const promoterPercentage = (promoterCount / totalReviews) * 100;
+    const detractorPercentage = (detractorCount / totalReviews) * 100;
+
+    const nps = promoterPercentage - detractorPercentage;
+    return Math.round(nps); // NPS is typically rounded to the nearest whole number
 }
