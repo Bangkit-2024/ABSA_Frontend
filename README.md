@@ -1,12 +1,8 @@
-# Bizzagi Aspect Based  Sentiment Analysis
-
-Deskripsi singkat tentang proyek Anda di sini.
-
 ## Instalasi
 
 Jika Anda ingin menggunakan proyek ini, ikuti langkah-langkah instalasi berikut:
 
-1. Clone repositori ini.
+1. Clone repositori ini dengan cara `git clone https://github.com/Bangkit-2024/ABSA_Frontend`
 2. `cd` ke direktori proyek.
 3. Jalankan perintah `npm install` atau `yarn install` untuk menginstal semua dependensi.
 4. Jalankan perintah `npm start` atau `yarn start` untuk memulai server pengembangan.
