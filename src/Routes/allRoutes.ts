@@ -42,6 +42,9 @@ import userInfo from "pages/User/UserInfo/index";
 // User Profile Settings
 import userSetting from "pages/User/UserSettings/index";
 
+// Review Guesser
+import reviewGuesser from 'pages/Guess/index'
+
 interface RouteObject {
   path: string;
   component: React.ComponentType<any>; // Use React.ComponentType to specify the type of the component
@@ -64,6 +67,9 @@ const authProtectedRoutes: Array<RouteObject> = [
 
   // File uploads
   { path: "/file-upload", component: FileUpload },
+
+  // Guess Review
+  { path: "/review-predict", component: reviewGuesser },
 
 ];
 

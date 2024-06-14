@@ -1,11 +1,22 @@
+import { createSelector } from "@reduxjs/toolkit";
 import useChartColors from "Common/useChartColors";
+import { countSentiment } from "helpers/processdata/process";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
+import { RootState } from "slices";
 
 const SimplePie = ({ chartId }: any) => {
   const chartColors = useChartColors(chartId);
 
-  const series = [20, 30, 35]
+  const selectReview = createSelector(
+    (state: RootState) => state.Review,
+    (review) => ({
+        series: countSentiment(review.reviews)
+    })
+  );
+  const {series} = useSelector(selectReview)
+
   var options: any = {
     chart: {
       height: 350,

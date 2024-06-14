@@ -1,54 +1,72 @@
-import axios from "axios";
-// import { api } from "../config";
+import api from "axios";
+import { apiRefresh } from "services/auth";
 
-axios.defaults.baseURL = "";
-// content type
-axios.defaults.headers.post["Content-Type"] = "application/json";
+const axios = api.create({
+  baseURL: `${process.env.REACT_APP_BACKEND_URL}/api/v1/`,
+});
+
+const getLoggedUser = () => {
+  const user = localStorage.getItem("authUser");
+  if (!user) {
+    return null;
+  } else {
+    return JSON.parse(user);
+  }
+};
+
 
 // content type
-const authUser: any = localStorage.getItem("authUser")
-const token = JSON.parse(authUser) ? JSON.parse(authUser).token : null;
-if (token)
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+// content type
+axios.interceptors.request.use(
+  (config) => {
+    const authUser: any = getLoggedUser();
+    const token = authUser.access ?? null;    
+    config.headers["Authorization"] = "Bearer " + token;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // intercepting to capture errors
 axios.interceptors.response.use(
   function (response) {
-    return response.data ? response.data : response;
+    return response;
   },
-  function (error) {
+  async function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     let message;
-    switch (error.status) {
-      case 500:
-        message = "Internal Server Error";
-        break;
-      case 401:
-        message = "Invalid credentials";
-        break;
-      case 404:
-        message = "Sorry! the data you are looking for could not be found";
-        break;
-      default:
-        message = error.message || error;
+    const originalConfig = error.config;
+
+    // // This will run only and only if reset token invalid
+    if (error.response.status === 401 && !originalConfig._retry) {
+      originalConfig._retry = true;
+      try {
+        const token = await apiRefresh();
+
+        const rs = token.data.access;
+
+        originalConfig.headers["Authorization"] = `Bearer ${rs}`;
+        
+        return axios(originalConfig);
+      } catch (_error: any) {
+        if (_error.response && _error.response.data) {
+          return Promise.reject(_error.response.data);
+        }
+
+        return Promise.reject(_error);
+      }
     }
-    return Promise.reject(message);
+    return Promise.reject(error)
   }
 );
-/**
- * Sets the default authorization
- * @param {*} token
- */
-const setAuthorization = (token: any) => {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-};
 
 class APIClient {
   /**
    * Fetches data from given url
    */
 
-  //  get = (url, params) => {
   //   return axios.get(url, params);
   // };
   get = (url: any, params: any) => {
@@ -57,12 +75,13 @@ class APIClient {
     let paramKeys: any = [];
 
     if (params) {
-      Object.keys(params).map(key => {
-        paramKeys.push(key + '=' + params[key]);
+      Object.keys(params).map((key) => {
+        paramKeys.push(key + "=" + params[key]);
         return paramKeys;
       });
 
-      const queryString = paramKeys && paramKeys.length ? paramKeys.join('&') : "";
+      const queryString =
+        paramKeys && paramKeys.length ? paramKeys.join("&") : "";
       response = axios.get(`${url}?${queryString}`, params);
     } else {
       response = axios.get(`${url}`, params);
@@ -93,14 +112,5 @@ class APIClient {
     return axios.delete(url, { ...config });
   };
 }
-const getLoggedUser = () => {
 
-  const user = localStorage.getItem("authUser");
-  if (!user) {
-    return null;
-  } else {
-    return JSON.parse(user);
-  }
-};
-
-export { APIClient, setAuthorization, getLoggedUser };
+export { APIClient, axios as api , getLoggedUser };

@@ -1,14 +1,25 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import useChartColors from "Common/useChartColors";
+import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "slices";
+import { countAspects } from "helpers/processdata/process";
+import { useSelector } from "react-redux";
+import { ASPECT_LIST } from "Common/constants/constant";
 
 const BasicBarChart = ({ chartId }: any) => {
 
     const chartColors = useChartColors(chartId);
+    const selectReview = createSelector(
+        (state: RootState) => state.Review,
+        (review) => ({
+            series: [{data:countAspects(review.reviews,ASPECT_LIST)}]
+        })
+      );
+    const {series} = useSelector(selectReview)
+    
     //basic bar
-    const series = [{
-        data: [400, 430, 448, 470, 540]
-    }];
+
     var options : any = {
         chart: {
             type: 'bar',
@@ -25,7 +36,7 @@ const BasicBarChart = ({ chartId }: any) => {
             enabled: false
         },
         xaxis: {
-            categories: ['Harga','Tempat','Rasa','Tempat','Jarak'],
+            categories: ASPECT_LIST,
         }
     };
 

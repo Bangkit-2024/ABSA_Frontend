@@ -12,47 +12,20 @@ import RegisterReducer from "./auth/register/reducer";
 // userProfile
 import ProfileReducer from "./auth/profile/reducer";
 
-// Chat
-import ChatReducer from "./chat/reducer";
+// review
+import ReviewReducer from "./reviews/reducer"
 
-// MailBox
-import MailboxReducer from "./mailbox/reducer";
+import BootReducer from './bootstrap/reducer'
 
-// Calendar
-import CalendarReducer from "./calendar/reducer";
 
-// Ecommerce
-import EcommerceReducer from "./ecommerce/reducer";
-
-// HR Managment
-import HRManagmentReducer from "./hrManagement/reducer";
-
-// Notes
-import NotesReducer from "./notes/reducer";
-
-// Social
-import SocialReducer from "./social/reducer";
-
-// Invoice
-import InvoiceReducer from "./invoice/reducer"
-
-// Users
-import UsersReducer from "./users/reducer";
 
 const rootReducer = combineReducers({
     Layout: LayoutReducer,
     Login: LoginReducer,
     Register: RegisterReducer,
     Profile: ProfileReducer,
-    Chat: ChatReducer,
-    Mailbox: MailboxReducer,
-    Calendar: CalendarReducer,
-    Ecommerce: EcommerceReducer,
-    HRManagment: HRManagmentReducer,
-    Notes: NotesReducer,
-    Social: SocialReducer,
-    Invoice: InvoiceReducer,
-    Users: UsersReducer,
+    Review : ReviewReducer,
+    Boot:BootReducer,
 });
 
 

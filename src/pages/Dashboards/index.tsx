@@ -1,24 +1,48 @@
 import { BasicBarChart } from "pages/Dashboards/BasicBarChart";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SimplePie from "./BasicPieCharts";
 import { StackedBarChart } from "./StackedBarChart";
 import SimpleWordCloud from "./WordCloud";
 import AspectBasedStats from "pages/Components/Dashboard/AspectBasedBox";
 import AspectBasedList from "pages/Components/Dashboard/AspectBasedList";
+// import Modal from "Common/Components/Modal";
+import { dataAspectReview, dataReview } from "helpers/api_data_models";
+import { ASPECT_LIST } from "Common/constants/constant";
+import Select from "react-select";
+
 
 const Dashboard = () => {
   document.title = "Dashboard | Bizzagi - Aspect Based Sentiment Analysis";
   const navigate = useNavigate();
   useEffect(() => navigate("/dashboard"), [navigate]);
 
+  const [Search, setSearch] = useState<string>("");
+  const defaultState = {
+    review_text: "",
+    id: "",
+    real_review_aspect: [],
+    review_aspect: [],
+  };
+  const [FilterAspect, setFilterAspect] = useState<string | null>(null);
+  const [FilterSentiment, setFilterSentiment] = useState<number | null>(null);
+  const [ModalState, setModalState] = React.useState<dataReview>(defaultState);
   return (
     <React.Fragment>
       <div className="mt-5 md:flex md:gap-3">
         <div className="basis-5/12">
           <div className="bg-white shadow-sm w-full">
-            <AspectBasedStats />
-            <AspectBasedList />
+            <AspectBasedStats
+              handleSearch={setSearch}
+              handleFilterAspect={setFilterAspect}
+              handleFilterSentiment={setFilterSentiment}
+            />
+            <AspectBasedList
+              searchKey={Search}
+              filterSentiment={FilterSentiment}
+              filterAspect={FilterAspect}
+              handleModalState={setModalState}
+            />
           </div>
         </div>
         <div className="md:basis-7/12 md:grid md:grid-cols-2 md:gap-2">

@@ -26,7 +26,7 @@ const Logout: React.FC = () => {
         dispatch(logoutUser());
     }, [dispatch]);
 
-    return isUserLogout ? <Navigate to="/login" /> : null;
+    return <Navigate to="/login" />
 }
 
 export default Logout;

@@ -1,57 +1,121 @@
 import React, { ChangeEvent } from "react";
-import { BadgeCheck, MapPin, UserCircle, ImagePlus } from "lucide-react";
+import {
+  BadgeCheck,
+  ImagePlus,
+  DeleteIcon,
+} from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// IMage
-import avatar1 from "assets/images/users/avatar-1.png";
+// Image
+import { createSelector } from "reselect";
+import { RootState } from "slices";
+import { hashWord } from "helpers/processdata/process";
+import { useDispatch, useSelector } from "react-redux";
+import { editProfile, removeProfile } from "slices/thunk";
 
-const AccountInfo = ({ className }: any) => {
+const AccountInfo = ({ className, description }: any) => {
+  const userSelector = createSelector(
+    (state: RootState) => state.Profile,
+    (result) => ({
+      profile: result.user,
+      uniqueCode: hashWord(result.user!.created_date!),
+      photo: result.user?.photo ? `${process.env.REACT_APP_BACKEND_URL}${result.user?.photo}` : null,
+    })
+  );
+  const { profile, uniqueCode, photo } = useSelector(userSelector);
 
-    const [selectedImage, setSelectedImage] = React.useState<string | ArrayBuffer | null>(avatar1);
+  const dispatch = useDispatch<any>()
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
 
-    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (file) {
+      // Check if the file is an image
+      if (file.type.startsWith("image/")) {
+        const imageUrl = URL.createObjectURL(file);
+        dispatch(editProfile({photo:file}))
+      } else {
+        toast.error("Please upload a valid image file.", {
+          position: "top-right",
+          autoClose: 5000,
+          theme: "colored",
+          icon: false,
+          closeButton: false,
+        });
+      }
+    }
+  };
 
-        const file = event.target.files?.[0];
+  const handleImageRemove = () => {
+    dispatch(removeProfile())
+  };
 
-        if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(imageUrl);
-        }
-    };
-
-    return (
-        <React.Fragment>
-            <div className={className}>
-                <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 2xl:grid-cols-12 ">
-                <div className="lg:col-span-2 2xl:col-span-1 px-4">
-                        <div className="relative inline-block size-20 rounded-full shadow-md bg-slate-100 profile-user xl:size-28">
-                            <img src={selectedImage?.toString() ?? avatar1} alt="" className="object-cover border-0 rounded-full img-thumbnail user-profile-image" />
-                            <div className="absolute bottom-0 flex items-center justify-center size-8 rounded-full ltr:right-0 rtl:left-0 profile-photo-edit">
-                                <input id="profile-img-file-input" type="file"
-                                    className="hidden profile-img-file-input"
-                                    onChange={handleImageChange} />
-                                <label htmlFor="profile-img-file-input" className="flex items-center justify-center size-8 bg-white rounded-full shadow-lg cursor-pointer dark:bg-zink-600 profile-photo-edit">
-                                    <ImagePlus className="size-4 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-500"></ImagePlus>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="lg:col-span-10 2xl:col-span-9 ml-10">
-                        <h5 className="mb-1">Paula Keenan <BadgeCheck className="inline-block size-4 text-sky-500 fill-sky-100 dark:fill-custom-500/20"></BadgeCheck></h5>
-                        <div className="flex gap-3 mb-4">
-                            <p className="text-slate-500 dark:text-zink-200"><UserCircle className="inline-block size-4 ltr:mr-1 rtl:ml-1 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-500"></UserCircle> CEO & Founder</p>
-                            <p className="text-slate-500 dark:text-zink-200"><MapPin className="inline-block size-4 ltr:mr-1 rtl:ml-1 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-500"></MapPin> Los Angeles, California</p>
-                        </div>
-                        <ul className="flex flex-wrap gap-3 mt-4 text-center divide-x divide-slate-200 dark:divide-zink-500 rtl:divide-x-reverse">
-                        </ul>
-                        <p className="mt-4 text-slate-500 dark:text-zink-200">Strong leader and negotiator adept at driving collaboration and innovation. Highly accomplished CEO & Founder with 10+ years of experience creating, launching and leading successful business ventures. Proven ability to build relationships, drive customer loyalty and increase profitability.</p>
-                    </div>
-                    <div className="lg:col-span-12 2xl:col-span-2">
-                    </div>
-                </div>
+  return (
+    <React.Fragment>
+      <div className={className}>
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 2xl:grid-cols-10 text-justify">
+          <div className="lg:col-span-2 2xl:col-span-1 px-4 ml-2">
+            <div className="relative inline-block size-20 rounded-full shadow-md bg-slate-100 profile-user xl:size-28">
+              <img
+                src={
+                  photo as string ??
+                  `https://api.dicebear.com/8.x/thumbs/svg?seed=${uniqueCode}`
+                }
+                alt=""
+                className="object-cover border-0 rounded-full img-thumbnail user-profile-image"
+              />
+              <div className="absolute bottom-0 flex items-center justify-center size-8 rounded-full ltr:right-0 rtl:left-0 profile-photo-edit">
+                {(photo === null || photo =="") ? (
+                  <>
+                    <input
+                      id="profile-img-file-input"
+                      type="file"
+                      accept="image/*" // Ensure only image files can be selected
+                      className="hidden profile-img-file-input"
+                      onChange={handleImageChange}
+                    />
+                    <label
+                      htmlFor="profile-img-file-input"
+                      className="flex items-center justify-center size-8 bg-white rounded-full shadow-lg cursor-pointer dark:bg-zink-600 profile-photo-edit"
+                    >
+                      <ImagePlus className="size-4 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-500"></ImagePlus>
+                    </label>
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="button"
+                      className="hidden profile-img-file-input"
+                    />
+                    <label
+                      htmlFor="profile-img-file-input"
+                      className="flex items-center justify-center size-8 bg-white rounded-full shadow-lg cursor-pointer dark:bg-zink-600 profile-photo-edit"
+                    >
+                      <DeleteIcon className="size-4 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-500" onClick={handleImageRemove}></DeleteIcon>
+                    </label>
+                  </>
+                )}
+              </div>
             </div>
-
-        </React.Fragment>
-    );
-}
+          </div>
+          <div className="lg:col-span-10 2xl:col-span-9 mx-10">
+            <h5 className="mb-1">
+              {profile?.username}{" "}
+              <BadgeCheck className="inline-block size-4 text-sky-500 fill-sky-100 dark:fill-custom-500/20"></BadgeCheck>
+            </h5>
+            <p className="mt-4 text-slate-500 dark:text-zink-200">
+              {profile?.first_name} {profile?.last_name}
+            </p>
+            <h6 className="mb-3 text-15">About Me</h6>
+            <p className="mb-2 text-slate-500 dark:text-zink-200">
+              {profile?.bio}
+            </p>
+          </div>
+        </div>
+      </div>
+      <ToastContainer />
+    </React.Fragment>
+  );
+};
 
 export default AccountInfo;

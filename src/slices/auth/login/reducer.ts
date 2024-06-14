@@ -1,14 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const auth = JSON.parse(localStorage.getItem('authUser')||`{"refresh":null,"access":null}`)
+
+interface UserState {
+    refresh:string,
+    access:string
+}
+
 interface LoginState {
-    user: string;
+    user: UserState | null;
     error: string;
     success: boolean;
     isUserLogout: boolean;
 }
 
 const initialState: LoginState = {
-    user: "",
+    user: auth,
     error: "",
     success: false,
     isUserLogout: false
@@ -18,8 +25,8 @@ const loginSlice = createSlice({
     name: "login",
     initialState,
     reducers: {
-        loginSuccess(state: LoginState, action: PayloadAction<string>) {
-            state.user = action.payload;
+        loginSuccess(state: LoginState, action: PayloadAction<string |  any >) {
+            state.user  = action.payload;
             state.success = true;
         },
         loginError(state: LoginState, action: PayloadAction<string | any>) {
@@ -28,6 +35,7 @@ const loginSlice = createSlice({
         },
         logoutSuccess(state: LoginState, action: PayloadAction<boolean>) {
             state.isUserLogout = action.payload;
+            state.success = false
         }
     },
 });

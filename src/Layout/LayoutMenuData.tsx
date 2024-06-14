@@ -1,4 +1,4 @@
-import { FileUp, MonitorDot, PowerOff, UserRoundCog } from "lucide-react";
+import { FileUp, MonitorDot, PowerOff, UserRoundCog, Cpu } from "lucide-react";
 
 const menuData: any = [
     {
@@ -10,6 +10,12 @@ const menuData: any = [
         label: 'Dashboards',
         link: "/#",
         icon: <MonitorDot />,
+    },
+    {
+        id: "guessr",
+        label: 'Review Predict',
+        link: "/review-predict",
+        icon: <Cpu />,
     },
     {
         label: 'Data',

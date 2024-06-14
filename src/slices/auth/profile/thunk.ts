@@ -1,36 +1,42 @@
-import { postFakeProfile } from "helpers/fakebackend_helper";
-import { profileFailed, profileSuccess } from "./reducer"
-import { getFirebaseBackend } from "helpers/firebase_helper";
-import { RootState } from "slices";
-import { ThunkAction } from "redux-thunk";
-import { Action, Dispatch } from "redux";
+import { changePassword, deleteProfilePhoto, editProfileData, getProfileData } from "services/backend_services";
+import { UserProfile as User, UserProfile } from "helpers/api_data_models";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-interface User {
-    username: string;
-    idx: number;
-}
-
-export const editProfile = (user: User
-): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch: Dispatch) => {
+export const editProfile = createAsyncThunk("auth/edit_profile",async(user:UserProfile,thunkAPI)=>{
     try {
-        let response: any;
-        if (process.env.REACT_APP_DEFAULTAUTH === "fake") {
-            response = await postFakeProfile(user)
 
-        } else if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
+        let response = await editProfileData(user)
+        
+        return response
 
-            const fireBaseBackend = getFirebaseBackend();
-            response = await fireBaseBackend.editProfileAPI(
-                user.username,
-                user.idx
-            );
-        }
-
-        if (response) {
-            dispatch(profileSuccess(response))
-        }
-
-    } catch (error) {
-        dispatch(profileFailed(error))
+    } catch (error : any) {     
+        return thunkAPI.rejectWithValue(error.response.data || error.toString())
     }
-}
+})
+
+export const getProfile = createAsyncThunk("auth/profile", async (_,thunkAPI)=>{
+    try{
+        let response = await getProfileData();
+        return response
+    }catch(error : any){
+        thunkAPI.rejectWithValue(error.response.data || error.toString())
+    }
+})
+
+export const removeProfile = createAsyncThunk("auth/profile_remove", async (_,thunkAPI)=>{
+    try {
+        let response = await deleteProfilePhoto();
+        return response;
+    } catch (error : any) {
+        thunkAPI.rejectWithValue(error.response.data || error.toString())
+    }
+})
+
+export const changePw = createAsyncThunk("auth/changePassword", async ({old_password,new_password}:any,thunkAPI)=>{
+    try {
+        let response = await changePassword(old_password,new_password);
+        return response;
+    } catch (error : any) {
+        thunkAPI.rejectWithValue(error.response.data || error.toString())
+    }
+})
