@@ -20,3 +20,4 @@ export const bulkPredict = () => api.post(url.API_URL_BULK_PREDICT).then(r=>r.da
 export const getProfileData = () => api.get(url.API_URL_PROFILE).then(r=>r.data)
 export const editProfileData = (profile:model.UserProfile) => api.patch(url.API_URL_PROFILE,profile,{"headers":{ "Content-Type": "multipart/form-data" }}).then(r=>r.data)
 export const deleteProfilePhoto = () => api.post(url.API_URL_PHOTO_REMOVE).then(r=>r.data)
+export const changePassword = (old_password:string, new_password:string) => api.post(url.API_URL_CHANGE_PASSWORD, {old_password:old_password, new_password:new_password}).then(r=>r.data)

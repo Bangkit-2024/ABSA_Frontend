@@ -10,8 +10,7 @@ import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
 
 import 'react-tooltip/dist/react-tooltip.css'
-import { bulkPredict, getReviewList } from "services/backend_services";
-import { getReview, listReview } from "slices/thunk";
+import { bulkReview } from "slices/thunk";
 
 
 export default function AspectBasedStats({
@@ -38,11 +37,11 @@ export default function AspectBasedStats({
   };
 
   const handleSentimentInput = (e: any) => {
-    handleFilterSentiment(e?.value);
+    handleFilterSentiment(e?.value??null);
   };
 
   const handleAspectInput = (e: any) => {
-    handleFilterAspect(e?.value ?? "");
+    handleFilterAspect(e?.value ?? null);
   };
 
   const aspectOption = [
@@ -66,25 +65,9 @@ export default function AspectBasedStats({
         showDenyButton: true,
         confirmButtonText: "Confirm",
         denyButtonText: `Cancel`,
-        preConfirm: async (login) => {
-          try {
-            const response = await bulkPredict()
-            return response
-          } catch (error) {
-            Swal.showValidationMessage(`
-              Request failed: ${error}
-            `);
-          }
-        },
-        allowOutsideClick: () => !Swal.isLoading()
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: `${result.value.message}`,
-            text:`${result.value.success_count} Review Success & ${result.value.failed_count}`,
-          }).then(r=>{
-            dispatch(listReview())
-          });
+          dispatch(bulkReview())
         }
       })
 }

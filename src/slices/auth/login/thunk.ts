@@ -46,7 +46,8 @@ export const loginUser = (
 
 export const logoutUser = () => async (dispatch: Dispatch) => {
     try {
-        await apiLogout()
+        return await apiLogout()
+
     } catch (error) {
         dispatch(loginError(error));
     }

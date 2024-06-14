@@ -1,4 +1,4 @@
-import { deleteProfilePhoto, editProfileData, getProfileData } from "services/backend_services";
+import { changePassword, deleteProfilePhoto, editProfileData, getProfileData } from "services/backend_services";
 import { UserProfile as User, UserProfile } from "helpers/api_data_models";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -26,6 +26,15 @@ export const getProfile = createAsyncThunk("auth/profile", async (_,thunkAPI)=>{
 export const removeProfile = createAsyncThunk("auth/profile_remove", async (_,thunkAPI)=>{
     try {
         let response = await deleteProfilePhoto();
+        return response;
+    } catch (error : any) {
+        thunkAPI.rejectWithValue(error.response.data || error.toString())
+    }
+})
+
+export const changePw = createAsyncThunk("auth/changePassword", async ({old_password,new_password}:any,thunkAPI)=>{
+    try {
+        let response = await changePassword(old_password,new_password);
         return response;
     } catch (error : any) {
         thunkAPI.rejectWithValue(error.response.data || error.toString())

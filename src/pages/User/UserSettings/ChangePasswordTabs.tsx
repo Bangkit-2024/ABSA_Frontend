@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { changePw } from "slices/thunk";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const ChangePasswordTabs = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<Record<string, boolean>>({});
@@ -15,54 +19,33 @@ const ChangePasswordTabs = () => {
         }));
     };
 
+    const dispatch = useDispatch<any>()
+
     const handleChangePassword = () => {
-        const admin = "admin";
     
-        if (oldPassword !== admin) {
-            toast.error("Old password is incorrect.", {
-                position: "top-right",
-                autoClose: 5000,
-                theme: "colored",
-                icon: false,
-                closeButton: false
-            });
-            return; // Stop further execution
-        }
-    
-        if (!newPassword || !confirmPassword) {
-            toast.error("Please fill in all fields.", {
-                position: "top-right",
-                autoClose: 5000,
-                theme: "colored",
-                icon: false,
-                closeButton: false
-            });
-            return; // Stop further execution
-        }
+
     
         if (newPassword !== confirmPassword) {
-            toast.error("New password and confirm password don't match.", {
-                position: "top-right",
-                autoClose: 5000,
-                theme: "colored",
-                icon: false,
-                closeButton: false
-            });
+            withReactContent(Swal).fire({
+                title: "New password and confirm password don't match",
+                icon:"error"
+              })
             return; // Stop further execution
         }
     
         // Your existing success notification code
-        toast.success("Password changed successfully!", {
-            position: "top-right",
-            autoClose: 5000,
-            theme: "colored",
-            icon: false,
-            closeButton: false
-        });
+        dispatch(changePw({new_password:newPassword,old_password:oldPassword})).unwrap().then(
+            ()=>                withReactContent(Swal).fire({
+                title: "Password Changed Successfuly",
+                icon:"success"
+              })
+            )
+        
     };
 
     return (
         <React.Fragment>
+            <ToastContainer />
             <div className="card">
                 <div className="card-body">
                     <h6 className="mb-4 text-15">Changes Password</h6>

@@ -21,3 +21,7 @@ export const parseExcel = (file:any)=> readXlsxFile(file,{sheet:1}).then((rows)=
     const content = rows.slice(1,10);
     return { header: headers, content: content };
 })
+
+export function toObject(arr: string[]){
+  return arr.reduce((a, v) => ({ ...a, [v]: v}), {}) 
+}

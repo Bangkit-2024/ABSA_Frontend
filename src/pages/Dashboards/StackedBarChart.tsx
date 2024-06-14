@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "slices";
 
 import {generateSeries} from 'helpers/processdata/process'
+import { ASPECT_LIST } from "Common/constants/constant";
 
 
 const StackedBarChart = ({ chartId }: any) => {
@@ -50,7 +51,7 @@ const StackedBarChart = ({ chartId }: any) => {
             colors: ['#fff']
         },
         xaxis: {
-            categories: ['Harga','Pelayanan','Rasa','Tempat','Jarak'],
+            categories: ASPECT_LIST,
             labels: {
                 formatter: function (val : any) {
                     return val

@@ -1,4 +1,4 @@
-import {getReviewDetail, getReviewList, deleteReview, uploadReviewData} from 'services/backend_services'
+import {getReviewDetail, getReviewList, deleteReview, uploadReviewData, bulkPredict} from 'services/backend_services'
 import { toast } from "react-toastify";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {dataReview} from 'helpers/api_data_models'
@@ -45,3 +45,14 @@ export const removeReview = createAsyncThunk("review/delete", async (id:string,t
         return thunkAPI.rejectWithValue("Terjadi Kesalahan");
     }
 });
+
+export const bulkReview = createAsyncThunk("review/predict_bulk", async (_,thunkAPI)=>{
+    try {
+        const response = await bulkPredict()
+        thunkAPI.dispatch(listReview())
+        return response
+
+      } catch (error) {
+        return thunkAPI.rejectWithValue("There was an error ");
+      }
+})

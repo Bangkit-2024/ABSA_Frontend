@@ -47,7 +47,7 @@ const PersonalTabs = () => {
 
   return (
     <React.Fragment>
-      <ToastContainer />
+      
       <div className="card">
         <div className="card-body">
           <h6 className="mb-1 text-15">Personal Information</h6>

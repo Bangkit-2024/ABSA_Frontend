@@ -166,17 +166,9 @@ export function filterReviews(
 
         // Filter by aspect and sentiment
         if (keywordAspect || sentiment) {
-            if (review!.real_review_aspect!.length > 0) {
-                matchesAspect = checkAspects(review!.real_review_aspect!);
-            } else {
-                matchesAspect = checkAspects(review!.review_aspect!);
-            }
 
-            if (review!.real_review_aspect!.length > 0) {
-                matchesSentiment = checkAspects(review!.real_review_aspect!);
-            } else {
-                matchesSentiment = checkAspects(review!.review_aspect!);
-            }
+            matchesAspect = checkAspects(review!.review_aspect!);
+            matchesSentiment = checkAspects(review!.review_aspect!);
         }
 
         return matchesKeyword && matchesAspect && matchesSentiment;
@@ -215,7 +207,7 @@ export function getSentimentRatio(data: dataReview[]): number {
     let negativeCount = 0;
 
     data.forEach(review => {
-        const aspects = review?.real_review_aspect!.length > 0 ? review.real_review_aspect : review.review_aspect;
+        const aspects = review.review_aspect;
         
         aspects!.forEach(aspect => {
             if (aspect.sentiment === 1) {
@@ -237,7 +229,7 @@ export function calculateNPS(data: dataReview[]): number {
     let totalReviews = 0;
 
     data.forEach(review => {
-        const aspects = review!.real_review_aspect!.length > 0 ? review?.real_review_aspect! : review.review_aspect;
+        const aspects =  review.review_aspect;
 
         aspects?.forEach(aspect => {
             totalReviews++;

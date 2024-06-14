@@ -29,6 +29,7 @@ export function apiLogin(user_login:userLogin) {
 export async function apiLogout() {
   localStorage.removeItem("authUser");
   localStorage.removeItem("profileUser");
+  return true
 }
 
 export async function apiSignUp(user_register:userRegister) {

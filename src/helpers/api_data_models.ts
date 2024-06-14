@@ -1,7 +1,7 @@
 export interface dataAspectReview {
     id:string,
     aspect:string,
-    sentiment:number|string
+    sentiment:number|string|null
 }
 
 export interface dataReview {
