@@ -40,6 +40,7 @@ export const getReview = createAsyncThunk("review/get", async (id:string,thunkAP
 export const removeReview = createAsyncThunk("review/delete", async (id:string,thunkAPI) => {
     try {
         const response = deleteReview(id);
+        thunkAPI.dispatch(listReview())
         return response;
     } catch (error) {
         return thunkAPI.rejectWithValue("Terjadi Kesalahan");
